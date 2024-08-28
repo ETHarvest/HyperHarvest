@@ -2887,6 +2887,9 @@ __metadata:
     "@web3auth/base": ^8.12.4
     "@web3auth/ethereum-mpc-provider": ^8.12.4
     "@web3auth/mpc-core-kit": ^3.1.1
+    "@web3auth/no-modal": ^8.12.4
+    "@web3auth/openlogin-adapter": ^8.12.4
+    "@web3auth/web3auth-wagmi-connector": ^6.0.0
     abitype: 1.0.5
     autoprefixer: ~10.4.12
     blo: ~1.0.1
@@ -2897,7 +2900,6 @@ __metadata:
     eslint-config-next: ~14.0.4
     eslint-config-prettier: ~8.5.0
     eslint-plugin-prettier: ~4.2.1
-    localforage: ^1.10.0
     next: ~14.0.4
     next-themes: ~0.2.1
     nprogress: ~0.2.0
@@ -9144,13 +9146,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"immediate@npm:~3.0.5":
-  version: 3.0.6
-  resolution: "immediate@npm:3.0.6"
-  checksum: f9b3486477555997657f70318cc8d3416159f208bec4cca3ff3442fd266bc23f50f0c9bd8547e1371a6b5e82b821ec9a7044a4f7b944798b25aa3cc6d5e63e62
-  languageName: node
-  linkType: hard
-
 "import-fresh@npm:^3.0.0, import-fresh@npm:^3.2.1":
   version: 3.3.0
   resolution: "import-fresh@npm:3.3.0"
@@ -10131,6 +10126,13 @@ __metadata:
   dependencies:
     p-locate: ^5.0.0
   checksum: 72eb661788a0368c099a184c59d2fee760b3831c9c1c33955e8a19ae4a21b4116e53fa736dc086cdeb9fce9f7cc508f2f92d2d3aae516f133e16a2bb59a39f5a
+  languageName: node
+  linkType: hard
+
+"lodash.clonedeep@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.clonedeep@npm:4.5.0"
+  checksum: 92c46f094b064e876a23c97f57f81fbffd5d760bf2d8a1c61d85db6d1e488c66b0384c943abee4f6af7debf5ad4e4282e74ff83177c9e63d8ff081a4837c3489
   languageName: node
   linkType: hard
 

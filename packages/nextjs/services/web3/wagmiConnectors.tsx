@@ -10,10 +10,12 @@ import {
 import { rainbowkitBurnerWallet } from "burner-connector";
 import * as chains from "viem/chains";
 import scaffoldConfig from "~~/scaffold.config";
+import { rainbowWeb3AuthConnector } from "./web3AuthConnector";
 
 const { onlyLocalBurnerWallet, targetNetworks } = scaffoldConfig;
 
 const wallets = [
+  () => rainbowWeb3AuthConnector(),
   metaMaskWallet,
   walletConnectWallet,
   ledgerWallet,
