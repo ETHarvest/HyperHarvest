@@ -1,11 +1,8 @@
 [profile.default]
 src = 'contracts'
 out = 'out'
-libs = ['lib','node_modules']
-remappings = [
-    '@chainlink/contracts-ccip/=node_modules/@chainlink/contracts-ccip',
-    '@chainlink/contracts/=node_modules/@chainlink/contracts',
-]
+libs = ['lib']
+
 
 fs_permissions = [{ access = "read-write", path = "./"}]
 
