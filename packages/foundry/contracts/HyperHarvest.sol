@@ -149,12 +149,15 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
         uint256 assets = previewRedeem(shares);
         _withdraw(msg.sender, msg.sender, msg.sender, assets, shares);
         
+        // Check if there are enough assets in the contract
         uint256 availableBalance = IERC20(asset()).balanceOf(address(this));
         if (assets > availableBalance) {
+            // If not enough assets, withdraw the shortfall from Aave
             uint256 shortfall = assets - availableBalance;
             pool.withdraw(address(asset()), shortfall, address(this));
         }
         
+        // Transfer the assets to the user
         IERC20(asset()).safeTransfer(msg.sender, assets);
         return assets;
     }
@@ -164,7 +167,9 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
      */
     function supplyAssetToAave() public onlyAllowed(msg.sender) {
         uint256 totalTokenBalance = IERC20(asset()).balanceOf(address(this));
+        // Approve Aave pool to spend tokens
         IERC20(asset()).approve(address(pool), totalTokenBalance);
+        // Supply tokens to Aave
         pool.supply(address(asset()), totalTokenBalance, address(this), 0);
         emit SuppliedToDefi(totalTokenBalance);
     }
@@ -175,6 +180,7 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
     function withdrawAssetFromAave() public onlyAllowed(msg.sender) {
         address aTokenAddr = pool.getReserveData(address(asset())).aTokenAddress;
         uint256 totalAtokenBalance = IERC20(aTokenAddr).balanceOf(address(this));
+        // Withdraw all supplied tokens from Aave
         pool.withdraw(address(asset()), type(uint256).max, address(this));
         emit WithdrawedFromDefi(totalAtokenBalance);
     }
@@ -193,12 +199,14 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
     ) public onlyAllowed(msg.sender) returns (bytes32 messageId) {
         uint256 totalBalance = totalAssets();
 
+        // Prepare token amounts for CCIP message
         Client.EVMTokenAmount[] memory tokenAmounts = new Client.EVMTokenAmount[](1);
         tokenAmounts[0] = Client.EVMTokenAmount({
             token: address(asset()),
             amount: totalBalance
         });
 
+        // Prepare CCIP message
         Client.EVM2AnyMessage memory message = Client.EVM2AnyMessage({
             receiver: abi.encode(_receiver),
             data: abi.encodeWithSignature(
@@ -211,6 +219,7 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
             feeToken: i_link
         });
 
+        // Calculate and check CCIP fees
         uint256 fee = IRouterClient(i_ccipRouter).getFee(
             _destinationChainSelector,
             message
@@ -222,9 +231,11 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
                 fee
             );
 
+        // Approve CCIP router to spend LINK and asset tokens
         LinkTokenInterface(i_link).approve(i_ccipRouter, fee);
         IERC20(asset()).approve(i_ccipRouter, totalBalance);
 
+        // Send CCIP message
         messageId = IRouterClient(i_ccipRouter).ccipSend(
             _destinationChainSelector,
             message
@@ -243,7 +254,6 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
 
     /**
      * @dev Withdraws from AAVE, bridges tokens to another chain, and supplies them to AAVE on that chain
-
      * @param _receiver The address of the receiver on the destination chain
      * @param _gasFeeAmount The amount of gas fee to be paid
      * @param _destinationChainSelector The selector of the destination chain
@@ -273,11 +283,14 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
     function _ccipReceive(
         Client.Any2EVMMessage memory message
     ) internal override nonReentrant {
+        
+        // Transfer received tokens to this contract
         IERC20(asset()).safeTransfer(
             address(this),
             IERC20(asset()).balanceOf(address(this))
         );
 
+        // Execute the received message
         (bool success, ) = address(this).call(message.data);
         if (!success) revert HyperHarvest__CcipReceiveError();
     }
@@ -300,6 +313,7 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
      */
     function totalAssets() public view override returns (uint256) {
         address aTokenAddr = pool.getReserveData(address(asset())).aTokenAddress;
+        // Sum of assets in the contract, supplied to Aave, and on other chains
         return IERC20(asset()).balanceOf(address(this)) + 
                IERC20(aTokenAddr).balanceOf(address(this)) + 
                crossChainAssets;
