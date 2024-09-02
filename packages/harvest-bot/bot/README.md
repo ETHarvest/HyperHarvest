@@ -1,4 +1,4 @@
-# b1
+# bot
 
 This project is generated using the [MessageKit](https://message-kit.vercel.app) v1.0.0 CLI and uses the `gm` template. Below are the instructions to set up and run the project.
 
@@ -8,7 +8,7 @@ Follow these steps to set up and run the project:
 
 1. **Navigate to the project directory:**
     ```sh
-    cd ./b1
+    cd ./bot
     ```
 
 2. **Install dependencies:**
