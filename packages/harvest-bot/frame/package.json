@@ -1,0 +1,33 @@
+{
+  "name": "open-frames-starter-framesjs",
+  "version": "0.0.21",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@xmtp/frames-validator": "^0.6.2",
+    "dotenv": "^16.4.5",
+    "frames.js": "^0.18.0",
+    "next": "^14.1.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "viem": "^2.17.0"
+  },
+  "devDependencies": {
+    "@frames.js/debugger": "^0.3.3",
+    "@types/node": "^18.17.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "concurrently": "^8.2.2",
+    "is-port-reachable": "^4.0.0",
+    "typescript": "^5.4.5"
+  },
+  "scripts": {
+    "dev": "node ./scripts/dev-script.js",
+    "start": "next start",
+    "build": "next build",
+    "lint": "next lint"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}
