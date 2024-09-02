@@ -1,4 +1,4 @@
-// web3Auth.ts
+
 import { tssLib } from "@toruslabs/tss-dkls-lib";
 import { UX_MODE } from "@web3auth/base";
 import { COREKIT_STATUS, WEB3AUTH_NETWORK, Web3AuthMPCCoreKit } from "@web3auth/mpc-core-kit";
