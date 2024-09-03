@@ -59,6 +59,8 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
         uint64 DestinationChainSelector
     );
     event CrossChainAssetsUpdated(uint256 oldValue, uint256 newValue);
+    event UserDeposited(address indexed user, uint256 assets, uint256 shares);
+    event UserWithdrawn(address indexed user, uint256 assets, uint256 shares);
 
 
     // Modifiers
@@ -134,6 +136,7 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
         if (assets == 0) revert HyperHarvest__AmountCantBeZero();
         uint256 shares = previewDeposit(assets);
         _deposit(msg.sender, msg.sender, assets, shares);
+        emit UserDeposited(msg.sender, assets, shares); 
         return shares;
     }
 
@@ -159,6 +162,7 @@ contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
         
         // Transfer the assets to the user
         IERC20(asset()).safeTransfer(msg.sender, assets);
+        emit UserWithdrawn(msg.sender, assets, shares);
         return assets;
     }
 
