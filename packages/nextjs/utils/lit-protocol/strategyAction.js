@@ -1,38 +1,80 @@
-const strategyAction = `
-const go = async () => {
-  const { ciphertext, dataToEncryptHash, arbitrumYield, optimismYield, currentChain } = params;
+export const strategyAction=`
+    (async () => {
+    const resp = await Lit.Actions.decryptAndCombine({
+      accessControlConditions,
+      ciphertext,
+      dataToEncryptHash,
+      authSig: null,
+      chain: 'ethereum',
+    });
 
-  // Decrypt the strategy
-  const decryptedStrategy = await Lit.Actions.decryptAndCombine({
-    accessControlConditions,
-    ciphertext,
-    dataToEncryptHash,
-    authSig: null,
-    chain: 'ethereum',
-  });
+    const strategy = JSON.parse(resp);
+    console.log("Decrypted strategy:", strategy);
 
-  // Parse the strategy and make a decision
-  const strategy = JSON.parse(decryptedStrategy);
-  const yieldDifference = Math.abs(arbitrumYield - optimismYield);
-  
-  let shouldMove = false;
-  let targetChain = '';
+    const { yieldThreshold, minYield, gasThreshold, minTimeBeforeMove, maxMoves } = strategy;
 
-  if (yieldDifference > strategy.threshold) {
-    if (arbitrumYield > optimismYield && currentChain !== 'arbitrum') {
-      shouldMove = true;
-      targetChain = 'arbitrum';
-    } else if (optimismYield > arbitrumYield && currentChain !== 'optimism') {
-      shouldMove = true;
-      targetChain = 'optimism';
+    let shouldMove = false;
+    let targetChain = currentChain;
+    const currentTimestamp = Date.now();
+
+    const yieldDifference = Math.abs(arbitrumYield - optimismYield);
+    const timeSinceLastMove = (currentTimestamp - lastMoveTimestamp) / 1000; // in seconds
+    const currentYield = currentChain === "arbitrum" ? arbitrumYield : optimismYield;
+
+    const calculateNetYield = (targetYield, gasCost) => {
+      return targetYield - (gasCost / totalAssets);
+    };
+
+    if (yieldDifference > yieldThreshold && timeSinceLastMove > minTimeBeforeMove && moveCount < maxMoves) {
+      if (currentChain === "arbitrum" && optimismYield > arbitrumYield) {
+        const netOptimismYield = calculateNetYield(optimismYield, estimatedGasCost.optimism);
+        if (netOptimismYield > currentYield && netOptimismYield > minYield) {
+          shouldMove = true;
+          targetChain = "optimism";
+        }
+      } else if (currentChain === "optimism" && arbitrumYield > optimismYield) {
+        const netArbitrumYield = calculateNetYield(arbitrumYield, estimatedGasCost.arbitrum);
+        if (netArbitrumYield > currentYield && netArbitrumYield > minYield) {
+          shouldMove = true;
+          targetChain = "arbitrum";
+        }
+      }
     }
-  }
 
-  // Return the decision
-  Lit.Actions.setResponse({ response: JSON.stringify({ shouldMove, targetChain }) });
-};
+    // Check if gas cost is below the threshold
+    if (shouldMove) {
+      const gasCost = estimatedGasCost[targetChain];
+      if (gasCost / totalAssets > gasThreshold) {
+        shouldMove = false;
+        targetChain = currentChain;
+      }
+    }
 
-go();
-`;
+    // Check if current yield is below minYield
+    if (currentYield < minYield) {
+      const otherChain = currentChain === "arbitrum" ? "optimism" : "arbitrum";
+      const otherYield = currentChain === "arbitrum" ? optimismYield : arbitrumYield;
+      const netOtherYield = calculateNetYield(otherYield, estimatedGasCost[otherChain]);
+      if (netOtherYield > minYield) {
+        shouldMove = true;
+        targetChain = otherChain;
+      }
+    }
 
-export default strategyAction;
+    const result = {
+      shouldMove,
+      targetChain,
+      currentChain,
+      arbitrumYield,
+      optimismYield,
+      yieldDifference,
+      timeSinceLastMove,
+      moveCount,
+      estimatedGasCost: estimatedGasCost[targetChain],
+    };
+
+    Lit.Actions.setResponse({ response: JSON.stringify(result) });
+  })();
+    `;
+
+
