@@ -160,7 +160,7 @@ import { encryptString } from "@lit-protocol/encryption";
 
 async function main() {
   const strategy = {
-    threshold: 0.5,
+    threshold: 0.005,
   };
 
   const strategyString=JSON.stringify(strategy);
@@ -274,23 +274,69 @@ async function main() {
   });
   console.log("✅ Got Session Sigs via an Auth Sig");
 
-  const code = `(async () => {
-    const resp = await Lit.Actions.decryptAndCombine({
-      accessControlConditions,
-      ciphertext,
-      dataToEncryptHash,
-      authSig: null,
-      chain: 'ethereum',
-    });
-
-    const a=JSON.parse(resp);
-    console.log(a);
-    console.log(meriYield);
+    // Example values for yields and current chain
+    const arbitrumYield = 0.05; // 5% yield on Arbitrum
+    const optimismYield = 0.06; // 6% yield on Optimism
+    const currentChain = "ethereum"; // Current chain where funds are
   
-    Lit.Actions.setResponse({ response: resp });
-  })();`;
 
-  const meriYield=0.5 ;
+    const code = `
+    (async () => {
+      const resp = await Lit.Actions.decryptAndCombine({
+        accessControlConditions,
+        ciphertext,
+        dataToEncryptHash,
+        authSig: null,
+        chain: 'ethereum',
+      });
+  
+      const strategy = JSON.parse(resp);
+      console.log("Decrypted strategy:", strategy);
+  
+      const { threshold } = strategy;
+  
+      let shouldMove = false;
+      let targetChain = currentChain;
+  
+      if (currentChain === "ethereum") {
+        if (arbitrumYield > optimismYield && arbitrumYield > threshold) {
+          shouldMove = true;
+          targetChain = "arbitrum";
+        } else if (optimismYield > arbitrumYield && optimismYield > threshold) {
+          shouldMove = true;
+          targetChain = "optimism";
+        }
+      } else if (currentChain === "arbitrum") {
+        if (optimismYield > arbitrumYield && optimismYield > threshold) {
+          shouldMove = true;
+          targetChain = "optimism";
+        } else if (arbitrumYield < threshold) {
+          shouldMove = true;
+          targetChain = "ethereum";
+        }
+      } else if (currentChain === "optimism") {
+        if (arbitrumYield > optimismYield && arbitrumYield > threshold) {
+          shouldMove = true;
+          targetChain = "arbitrum";
+        } else if (optimismYield < threshold) {
+          shouldMove = true;
+          targetChain = "ethereum";
+        }
+      }
+  
+      const result = {
+        shouldMove,
+        targetChain,
+        currentChain,
+        arbitrumYield,
+        optimismYield
+      };
+  
+      Lit.Actions.setResponse({ response: JSON.stringify(result) });
+    })();
+    `;
+  
+
   const res = await client.executeJs({
     sessionSigs,
     code,
@@ -298,7 +344,9 @@ async function main() {
       accessControlConditions,
       ciphertext,
       dataToEncryptHash,
-      meriYield,
+      arbitrumYield,
+      optimismYield,
+      currentChain
     },
   });
 
