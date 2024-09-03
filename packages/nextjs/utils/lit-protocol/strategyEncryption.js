@@ -1,5 +1,7 @@
 import * as LitJsSdk from "@lit-protocol/lit-node-client-nodejs";
 import { LitAccessControlConditionResource, LitActionResource, LitAbility } from "@lit-protocol/auth-helpers";
+import { LitNodeClient } from "@lit-protocol/lit-node-client";
+import { LitNetwork } from "@lit-protocol/constants";
 
 const chain = 'ethereum';
 const accessControlConditions = [
@@ -17,8 +19,8 @@ const accessControlConditions = [
 ];
 
 export async function encryptStrategy(strategy) {
-  const client = new LitJsSdk.LitNodeClientNodeJs({
-    litNetwork: "datil-test"
+  const client = new LitNodeClient({
+    litNetwork: LitNetwork.DatilTest,
   });
   await client.connect();
   
