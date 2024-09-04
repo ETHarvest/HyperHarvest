@@ -1,4 +1,3 @@
-
 import { tssLib } from "@toruslabs/tss-dkls-lib";
 import { UX_MODE } from "@web3auth/base";
 import { COREKIT_STATUS, WEB3AUTH_NETWORK, Web3AuthMPCCoreKit } from "@web3auth/mpc-core-kit";
@@ -14,7 +13,7 @@ export const getWeb3AuthInstance = async (): Promise<Web3AuthMPCCoreKit> => {
       web3AuthNetwork: WEB3AUTH_NETWORK.DEVNET,
       tssLib: tssLib,
       storage: window.localStorage,
-      baseUrl: "http://localhost:3000",
+      baseUrl: process.env.NEXT_PUBLIC_DOMAIN || "localhost:3000",
       uxMode: UX_MODE.REDIRECT,
       manualSync: true,
       enableLogging: true,
