@@ -1,0 +1,22 @@
+type L2Pool_ReserveDataUpdated {
+  id: ID!
+  reserve: String!
+  liquidityRate: BigInt!
+  stableBorrowRate: BigInt!
+  variableBorrowRate: BigInt!
+  liquidityIndex: BigInt!
+  variableBorrowIndex: BigInt!
+}
+
+
+type OpSepoliaUsdcReserve {
+  id: ID!
+  liquidityRate: BigInt!
+  lastUpdateTimestamp: BigInt!
+}
+
+type arbSepoliaUsdcReserve {
+  id: ID!
+  liquidityRate: BigInt!
+  lastUpdateTimestamp: BigInt!
+}
