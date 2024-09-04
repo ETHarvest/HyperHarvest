@@ -11,8 +11,8 @@ import { LitNetwork } from "@lit-protocol/constants";
 import { LitNodeClient } from "@lit-protocol/lit-node-client";
 import { encryptString } from "@lit-protocol/encryption";
 import { strategyAction } from "../utils/lit-protocol/strategyAction.js";
-import {getStrategy} from "../utils/lit-protocol/strategyExecutionHelpers.js"
-import { calculateGasCost } from "../utils/lit-protocol/strategyExecutionHelpers.js";
+import {getStrategy,calculateGasCost} from "../utils/lit-protocol/strategyExecutionHelpers.js"
+import {getArbAPY, getOPAPY} from "../utils/envio/apyInfo.js"
 
 
 
@@ -135,8 +135,10 @@ async function main() {
   const estimatedGasCost = await calculateGasCost("arbitrumSepolia", "optimismSepolia", amount, message);
 
     // Example values for yields and current chain
-  const arbitrumYield = 0.045; // 4.5% yield on Arbitrum
-  const optimismYield = 0.055; // 5.5% yield on Optimism
+  const arbitrumYield = await getArbAPY(); // 4.5% yield on Arbitrum
+  console.log(arbitrumYield,"arbitrumYield");
+  const optimismYield = await getOPAPY(); // 5.5% yield on Optimism
+  console.log(optimismYield,"optimismYield");
   const currentChain = "arbitrum"; // Current chain where funds are
   const totalAssets = 100000; // Total assets in USD
   const lastMoveTimestamp = Date.now() - 5 * 24 * 60 * 60 * 1000; // Last move was 5 days ago
