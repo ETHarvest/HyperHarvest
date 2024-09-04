@@ -13,6 +13,8 @@
 /out/
 .vercel
 
+jwks.json
+
 # production
 /build
 
