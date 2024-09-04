@@ -12,6 +12,8 @@ import { LitNodeClient } from "@lit-protocol/lit-node-client";
 import { encryptString } from "@lit-protocol/encryption";
 import { strategyAction } from "../utils/lit-protocol/strategyAction.js";
 import {getStrategy} from "../utils/lit-protocol/strategyExecutionHelpers.js"
+import { calculateGasCost } from "../utils/lit-protocol/strategyExecutionHelpers.js";
+
 
 
 async function main() {
@@ -128,15 +130,15 @@ async function main() {
   });
   console.log("✅ Got Session Sigs via an Auth Sig");
 
+  const amount = 100; // Amount of USDC to transfer
+  const message = "Transfer USDC"; // Optional message
+  const estimatedGasCost = await calculateGasCost("arbitrumSepolia", "optimismSepolia", amount, message);
+
     // Example values for yields and current chain
   const arbitrumYield = 0.045; // 4.5% yield on Arbitrum
   const optimismYield = 0.055; // 5.5% yield on Optimism
   const currentChain = "arbitrum"; // Current chain where funds are
   const totalAssets = 100000; // Total assets in USD
-  const estimatedGasCost = {
-     arbitrum: 50, // $50 gas cost to move to Arbitrum
-     optimism: 30, // $30 gas cost to move to Optimism
-  };
   const lastMoveTimestamp = Date.now() - 5 * 24 * 60 * 60 * 1000; // Last move was 5 days ago
   const moveCount = 1;
   
@@ -182,10 +184,6 @@ async function main() {
       optimism: {
         receiver: 'OPTIMISM_RECEIVER_ADDRESS',
         destinationChainSelector: 'OPTIMISM_CHAIN_SELECTOR',
-      },
-      ethereum: {
-        receiver: 'ETHEREUM_RECEIVER_ADDRESS',
-        destinationChainSelector: 'ETHEREUM_CHAIN_SELECTOR',
       },
     };
 
