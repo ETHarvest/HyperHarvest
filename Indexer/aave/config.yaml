@@ -1,0 +1,21 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: aave_indexer
+contracts:
+- name: L2Pool
+  handler: src/EventHandlers.ts
+  events:
+  - event: ReserveDataUpdated(address indexed reserve, uint256 liquidityRate, uint256 stableBorrowRate, uint256 variableBorrowRate, uint256 liquidityIndex, uint256 variableBorrowIndex)
+networks:
+- id: 421614
+  start_block: 0
+  contracts:
+  - name: L2Pool
+    address:
+    - 0xBfC91D59fdAA134A4ED45f7B584cAf96D7792Eff
+- id: 11155420
+  start_block: 0
+  contracts:
+  - name: L2Pool
+    address:
+    - 0xb50201558B00496A145fE76f7424749556E326D8
+rollback_on_reorg: false
