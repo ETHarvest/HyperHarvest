@@ -13,6 +13,7 @@ import { encryptString } from "@lit-protocol/encryption";
 import { strategyAction } from "../utils/lit-protocol/strategyAction.js";
 import {getStrategy,calculateGasCost} from "../utils/lit-protocol/strategyExecutionHelpers.js"
 import {getArbAPY, getOPAPY} from "../utils/envio/apyInfo.js"
+import {getArbitrumATokenBalance,getOptimismATokenBalance,chainParams, rpcUrls, hyperHarvestAddresses} from "../utils/aave/aaveHelper.js"
 
 
 
@@ -130,20 +131,28 @@ async function main() {
   });
   console.log("✅ Got Session Sigs via an Auth Sig");
 
-  const amount = 100; // Amount of USDC to transfer
-  const message = "Transfer USDC"; // Optional message
-  const estimatedGasCost = await calculateGasCost("arbitrumSepolia", "optimismSepolia", amount, message);
+  // Here _aToken balance is same as the undelying USDC balance of both chain's contracts
 
-    // Example values for yields and current chain
-  const arbitrumYield = await getArbAPY(); // 4.5% yield on Arbitrum
+  const arbitrumBalance = await getArbitrumATokenBalance();
+  const optimismBalance = await getOptimismATokenBalance();
+
+
+
+  console.log("arbitrumBalance",arbitrumBalance);
+  console.log("optimismBalance",optimismBalance);
+    
+
+  const amount={
+    arbitrumBalance:arbitrumBalance,
+    optimismBalance:optimismBalance
+  }
+  const estimatedGasCost = await calculateGasCost("arbitrumSepolia", "optimismSepolia", amount);
+
+  const arbitrumYield = await getArbAPY(); 
   console.log(arbitrumYield,"arbitrumYield");
-  const optimismYield = await getOPAPY(); // 5.5% yield on Optimism
+
+  const optimismYield = await getOPAPY(); 
   console.log(optimismYield,"optimismYield");
-  const currentChain = "arbitrum"; // Current chain where funds are
-  const totalAssets = 100000; // Total assets in USD
-  const lastMoveTimestamp = Date.now() - 5 * 24 * 60 * 60 * 1000; // Last move was 5 days ago
-  const moveCount = 1;
-  
 
   const code = strategyAction;
   
@@ -157,11 +166,9 @@ async function main() {
       dataToEncryptHash,
       arbitrumYield,
       optimismYield,
-      currentChain,
-      totalAssets,
       estimatedGasCost,
-      lastMoveTimestamp,
-      moveCount
+      arbitrumBalance,
+      optimismBalance
     },
   });
 
@@ -170,42 +177,40 @@ async function main() {
   const result=JSON.parse(res.response);
 
   if (result.shouldMove) {
-    console.log(`Moving funds to ${result.targetChain}`);
+    const sourceChain = result.targetChain === "arbitrum" ? "optimism" : "arbitrum";
+    const sourceBalance = sourceChain === "arbitrum" ? result.arbitrumBalance : result.optimismBalance;
 
-    // Set up the contract interaction
-    const provider = new ethers.providers.JsonRpcProvider('YOUR_RPC_URL');
-    const signer = new ethers.Wallet('YOUR_PRIVATE_KEY', provider);
-    const hyperHarvest = new ethers.Contract('YOUR_CONTRACT_ADDRESS', ['function withdrawBridgeAndSupplyAssetToAave(address _receiver, uint256 _gasFeeAmount, uint64 _destinationChainSelector)'], signer);
+    if (sourceBalance > 0) {
+      console.log(`Moving funds from ${sourceChain} to ${result.targetChain}`);
 
-    // Define chain-specific parameters
-    const chainParams = {
-      arbitrum: {
-        receiver: 'ARBITRUM_RECEIVER_ADDRESS',
-        destinationChainSelector: 'ARBITRUM_CHAIN_SELECTOR',
-      },
-      optimism: {
-        receiver: 'OPTIMISM_RECEIVER_ADDRESS',
-        destinationChainSelector: 'OPTIMISM_CHAIN_SELECTOR',
-      },
-    };
+      // Set up the contract interaction
+      const provider = new ethers.providers.JsonRpcProvider(rpcUrls[sourceChain]);
+      const signer = new ethers.Wallet("PRIVATE_KEY", provider);
+      const hyperHarvest = new ethers.Contract(hyperHarvestAddresses[sourceChain], ['function withdrawBridgeAndSupplyAssetToAave(address _receiver, uint256 _gasFeeAmount, uint64 _destinationChainSelector)'], signer);
 
-    const params = chainParams[result.targetChain];
-    const gasFeeAmount = ethers.utils.parseEther('0.1'); // Adjust as needed
+      const params = chainParams[result.targetChain];
 
-    try {
-      const tx = await hyperHarvest.withdrawBridgeAndSupplyAssetToAave(
-        params.receiver,
-        gasFeeAmount,
-        params.destinationChainSelector
-      );
-      await tx.wait();
-      console.log(`Transaction successful: ${tx.hash}`);
-    } catch (error) {
-      console.error("Error executing strategy:", error);
+      // CCIP gasFeeAmount
+      const gasFeeAmount = ethers.utils.parseEther('0.0002'); 
+
+      try {
+        const tx = await hyperHarvest.withdrawBridgeAndSupplyAssetToAave(
+          params.receiver,
+          gasFeeAmount,
+          params.destinationChainSelector
+        );
+        await tx.wait();
+        console.log(`Transaction successful: ${tx.hash}`);
+      } catch (error) {
+        console.error("Error executing strategy:", error);
+      }
+    } else {
+      console.log(`No funds available on ${sourceChain} to move. Skipping transfer.`);
     }
   } else {
-    console.log("No action needed. Keeping funds in the current chain.");
+    console.log(`Funds are already on the most optimal chain (${result.targetChain}). No action needed.`);
   }
+
 
 }
 main().catch((error) => {
