@@ -9,68 +9,55 @@ export const strategyAction=`
     });
 
     const strategy = JSON.parse(resp);
-    console.log("Decrypted strategy:", strategy);
+    const { yieldThreshold, minYield, gasThreshold } = strategy;
 
-    const { yieldThreshold, minYield, gasThreshold, minTimeBeforeMove, maxMoves } = strategy;
-
-    let shouldMove = false;
-    let targetChain = currentChain;
-    const currentTimestamp = Date.now();
-
-    const yieldDifference = Math.abs(arbitrumYield - optimismYield);
-    const timeSinceLastMove = (currentTimestamp - lastMoveTimestamp) / 1000; // in seconds
-    const currentYield = currentChain === "arbitrum" ? arbitrumYield : optimismYield;
-
-    const calculateNetYield = (targetYield, gasCost) => {
-      return targetYield - (gasCost / totalAssets);
+    const calculateNetYield = (yield, balance, gasCost) => {
+      return balance > 0 ? (yield * balance - gasCost) / balance : 0;
     };
 
-    if (yieldDifference > yieldThreshold && timeSinceLastMove > minTimeBeforeMove && moveCount < maxMoves) {
-      if (currentChain === "arbitrum" && optimismYield > arbitrumYield) {
-        const netOptimismYield = calculateNetYield(optimismYield, estimatedGasCost.optimism);
-        if (netOptimismYield > currentYield && netOptimismYield > minYield) {
-          shouldMove = true;
-          targetChain = "optimism";
+    const arbitrumNetYield = calculateNetYield(arbitrumYield, arbitrumBalance, estimatedGasCost.arbitrumSepolia);
+    const optimismNetYield = calculateNetYield(optimismYield, optimismBalance, estimatedGasCost.optimismSepolia);
+
+    let targetChain = arbitrumNetYield > optimismNetYield ? "arbitrum" : "optimism";
+    let shouldMove = false;
+
+    const yieldDifference = Math.abs(arbitrumNetYield - optimismNetYield);
+
+    if (yieldDifference > yieldThreshold) {
+      const sourceChain = targetChain === "arbitrum" ? "optimism" : "arbitrum";
+      const sourceBalance = sourceChain === "arbitrum" ? arbitrumBalance : optimismBalance;
+      const targetBalance = targetChain === "arbitrum" ? arbitrumBalance : optimismBalance;
+      const sourceYield = sourceChain === "arbitrum" ? arbitrumNetYield : optimismNetYield;
+      const targetYield = targetChain === "arbitrum" ? arbitrumNetYield : optimismNetYield;
+      
+      if (sourceBalance > 0 && targetYield > minYield) {
+        let gasCost;
+        if(targetChain=='arbitrum'){
+          gasCost=estimatedGasCost[arbitrumSepolia]
         }
-      } else if (currentChain === "optimism" && arbitrumYield > optimismYield) {
-        const netArbitrumYield = calculateNetYield(arbitrumYield, estimatedGasCost.arbitrum);
-        if (netArbitrumYield > currentYield && netArbitrumYield > minYield) {
-          shouldMove = true;
-          targetChain = "arbitrum";
+        else{
+          gasCost=estimatedGasCost[optimismSepolia];
+        }
+        const gasCostPercentage = gasCost / sourceBalance;
+        
+        if (gasCostPercentage < gasThreshold) {
+          const currentTotalYield = (sourceYield * sourceBalance) + (targetYield * targetBalance);
+          const newTotalYield = targetYield * (sourceBalance + targetBalance - gasCost);
+          
+          if (newTotalYield > currentTotalYield) {
+            shouldMove = true;
+          }
         }
       }
     }
 
-    // Check if gas cost is below the threshold
-    if (shouldMove) {
-      const gasCost = estimatedGasCost[targetChain];
-      if (gasCost / totalAssets > gasThreshold) {
-        shouldMove = false;
-        targetChain = currentChain;
-      }
-    }
-
-    // Check if current yield is below minYield
-    if (currentYield < minYield) {
-      const otherChain = currentChain === "arbitrum" ? "optimism" : "arbitrum";
-      const otherYield = currentChain === "arbitrum" ? optimismYield : arbitrumYield;
-      const netOtherYield = calculateNetYield(otherYield, estimatedGasCost[otherChain]);
-      if (netOtherYield > minYield) {
-        shouldMove = true;
-        targetChain = otherChain;
-      }
+    if (!shouldMove) {
+      targetChain = arbitrumBalance > optimismBalance ? "arbitrum" : "optimism";
     }
 
     const result = {
-      shouldMove,
       targetChain,
-      currentChain,
-      arbitrumYield,
-      optimismYield,
-      yieldDifference,
-      timeSinceLastMove,
-      moveCount,
-      estimatedGasCost: estimatedGasCost[targetChain],
+      shouldMove
     };
 
     Lit.Actions.setResponse({ response: JSON.stringify(result) });
