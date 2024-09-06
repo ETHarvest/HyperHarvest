@@ -2,6 +2,7 @@ import { Client } from '@xmtp/xmtp-js';
 import { queueService } from './queueService';
 import { Wallet } from 'ethers';
 import dotenv from 'dotenv';
+import { db } from '../config/db';
 
 dotenv.config();
 
@@ -51,7 +52,15 @@ class NotificationService {
           await this.#sendXmtpMessage(message.user, `You have withdrawn ${message.assets} assets.`);
           break;
         case 'WithdrawBridgeAndSupplied':
-          await this.#sendXmtpMessage(message.receiver, `Your withdraw and bridge operation is complete. Gas fees: ${message.gasFeesAmount}`);
+          const { results } = await db.prepare('SELECT * FROM Xmtp_user_11155420_162;').all();
+          for (const user of results) {
+            const notificationMessage = `A WithdrawBridgeAndSupplied event occurred. 
+              Receiver: ${message.receiver}
+              Gas Fees: ${message.gasFeesAmount}
+              Destination Chain Selector: ${message.destinationChainSelector}
+              Assets have been moved to increase yield.`;
+            await this.#sendXmtpMessage(user.address, notificationMessage);
+          }
           break;
         default:
           console.log(`Unknown event type: ${message.type}`);
@@ -61,7 +70,6 @@ class NotificationService {
       throw error; // Rethrow to allow message to be nacked and requeued
     }
   }
-
   async #sendXmtpMessage(userAddress, messageContent) {
     try {
       // Check if the recipient address is XMTP enabled
