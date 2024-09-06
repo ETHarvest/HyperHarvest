@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: hyperharvest_indexer
+contracts:
+- name: HyperHarvest
+  handler: src/EventHandlers.ts
+  events:
+  - event: UserDeposited(address indexed user, uint256 assets, uint256 shares)
+  - event: UserWithdrawn(address indexed user, uint256 assets, uint256 shares)
+  - event: WithdrawBridgeAndSupplied(address Receiver, uint256 GasFeesAmount, uint64 DestinationChainSelector)
+networks:
+- id: 421614
+  start_block: 0
+  contracts:
+  - name: HyperHarvest
+    address:
+    - 0x72E9cf272dAb6D97fDb48acbBE67b5B2689F9F91
+- id: 11155420
+  start_block: 0
+  contracts:
+  - name: HyperHarvest
+    address:
+    - 0x4cC6Cc3A8DBB06E637cA78d93544CCAEF2fa1954
+rollback_on_reorg: false
