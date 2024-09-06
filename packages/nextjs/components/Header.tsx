@@ -4,8 +4,8 @@ import React, { useCallback, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
-import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/scaffold-eth";
+import User from "./hyperharvest/User";
+import { Bars3Icon } from "@heroicons/react/24/outline";;
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
 type HeaderMenuLink = {
@@ -20,9 +20,12 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/",
   },
   {
-    label: "Debug Contracts",
-    href: "/debug",
-    icon: <BugAntIcon className="h-4 w-4" />,
+    label: "Transfer",
+    href: "/transfer",
+  },
+  {
+    label: "Harvest",
+    href: "/harvest",
   },
 ];
 
@@ -93,17 +96,16 @@ export const Header = () => {
             <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
           </div>
           <div className="flex flex-col">
-            <span className="font-bold leading-tight">HHarvestoor</span>
-            <span className="text-xs">Best cross-chain yeild</span>
+            <span className="font-bold leading-tight">HyperHarvest</span>
+            <span className="text-xs">Cross-chain yield farm</span>
           </div>
         </Link>
         <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
           <HeaderMenuLinks />
         </ul>
       </div>
-      <div className="navbar-end flex-grow mr-4">
-        <RainbowKitCustomConnectButton />
-        <FaucetButton />
+      <div className="navbar-end flex mr-4 items-center ">
+        <User />
       </div>
     </div>
   );
