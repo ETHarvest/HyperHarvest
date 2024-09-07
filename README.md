@@ -33,6 +33,10 @@ By combining cutting-edge technology with user-centric design, HyperHarvest offe
 - (Optimism Sepolia):
 [HyperHarvest Optimism](https://sepolia-optimism.etherscan.io/address/0x4cc6cc3a8dbb06e637ca78d93544ccaef2fa1954#code)
 
+## 📇 Envio Indexers 
+
+- [Aave pool indexer](https://envio.dev/app/vasugupta153/envio-indexer/8d0c19e/playground)
+- [HyperHarvest Contract Indexer](https://envio.dev/app/vasugupta153/envio-indexer-2/556bce7/playground)
 
 ## 🏡 Architecture 
 The system consists of a single smart contract:
@@ -40,6 +44,8 @@ The system consists of a single smart contract:
 HyperHarvest Contract (deployed on each supported chain)
 
 This contract interacts with AAVE lending pools on their respective chains and utilizes Chainlink's CCIP for secure inter-chain communications and transfers.
+
+Whole architecture of HyperHarvest :
 <p align="center">
   <img src="packages/HH Architecture.png" alt="Hyper Harvest Architecture" width="800" />
 </p>
@@ -232,7 +238,7 @@ We followed Envio's quick and easy guide to set up and index the contracts:
 We have deployed two subgraphs as part of our Envio integration:
 
 1. Aave yield API: [https://indexer.bigdevenergy.link/93d433c/v1/graphql](https://indexer.bigdevenergy.link/93d433c/v1/graphql)
-2. HyperHarvest N: [https://indexer.bigdevenergy.link/a861e6e/v1/graphql](https://indexer.bigdevenergy.link/a861e6e/v1/graphql)
+2. HyperHarvest Notifications API: [https://indexer.bigdevenergy.link/a861e6e/v1/graphql](https://indexer.bigdevenergy.link/a861e6e/v1/graphql)
 
 These subgraphs serve as the backbone for our data querying and retrieval system, allowing us to efficiently access indexed blockchain data.
 
