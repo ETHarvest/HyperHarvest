@@ -4,6 +4,8 @@
 
 HyperHarvest is an innovative cross-chain yield aggregator that maximizes USDC returns across Arbitrum Sepolia and Optimism Sepolia testnets. Our platform stands out through its use of private, encrypted yield optimization strategies, providing a unique competitive edge in the DeFi landscape .
 
+Start Harvesting : [HyperHarvest](https://hyperharvest.vercel.app/)
+
 ## ✏️ Key features 
 
 - Deposit USDC on Arbitrum Sepolia or Optimism Sepolia using our webApp or using XMTP bot in converse
@@ -31,8 +33,6 @@ By combining cutting-edge technology with user-centric design, HyperHarvest offe
 - (Optimism Sepolia):
 [HyperHarvest Optimism](https://sepolia-optimism.etherscan.io/address/0x4cc6cc3a8dbb06e637ca78d93544ccaef2fa1954#code)
 
-## Envio Indexer API Endpoints 
-
 
 ## 🏡 Architecture 
 The system consists of a single smart contract:
@@ -54,17 +54,59 @@ Our yield aggregator implements several strategies to maximize returns for users
 
 ## 🟦 Chainlink CCIP Integration
 
-We leverage Chainlink's Cross-Chain Interoperability Protocol (CCIP) for managing cross-chain fund transfers with industry-leading security.
+### Overview
+Our project utilizes Chainlink's Cross-Chain Interoperability Protocol (CCIP) to enable seamless transfer of USDC funds between different blockchain networks. The HyperHarvest contract serves as both a vault and a gateway for receiving CCIP messages and funds.
+Key Features
+
+### Cross-Chain Fund Transfer: 
+- Ability to move USDC funds between different blockchain networks.
+- Integrated Vault Functionality: HyperHarvest contract acts as a vault for storing user funds.
+- CCIP Message Handling: Built-in capability to process incoming CCIP messages and funds.
+
+### Technical Implementation
+#### CCIP Router Integration
+The contract inherits from CCIPReceiver, which provides the necessary functionality to interact with the CCIP router:
+```
+contract HyperHarvest is ERC4626, CCIPReceiver, ReentrancyGuard {
+    // ...
+}
+```
+#### Cross-Chain Asset Transfer
+The bridgeAndSupplyAssetToAave function prepares and sends CCIP messages to transfer assets:
+```
+function bridgeAndSupplyAssetToAave(
+    address _receiver,
+    uint256 _gasFeeAmount,
+    uint64 _destinationChainSelector
+) public onlyAllowed(msg.sender) returns (bytes32 messageId) {
+    // ... (Function implementation)
+}
+```
+#### CCIP Message Reception
+The _ccipReceive function handles incoming CCIP messages:
+```
+function _ccipReceive(
+    Client.Any2EVMMessage memory message
+) internal override nonReentrant {
+    // ... (Function implementation)
+}
+```
+### Benefits
+
+- Interoperability: Enables seamless movement of funds across different blockchain networks.
+- Enhanced Yield Opportunities: Allows users to access yield opportunities on multiple chains.
+- Automated Cross-Chain Operations: Facilitates automated fund transfers and yield farming across chains.
 
 ## 🔥 Lit Protocol Integration
 
 ### Overview
 Our project leverages Lit Protocol to implement private strategies for our cross-chain yield aggregator. This integration allows us to compute over private data, determining optimal fund allocation across different chains while maintaining strategy confidentiality.
-Key Features
 
-Private Strategy Computation: We use Lit Actions to decrypt and compute private strategies.
-Cross-Chain Yield Optimization: The system determines the best chain for fund allocation based on current yields and transfer costs.
-Automated Decision Making: Our Lit Action script runs periodically to make informed decisions about fund transfers.
+### Key Features
+
+- Private Strategy Computation: We use Lit Actions to decrypt and compute private strategies.
+- Cross-Chain Yield Optimization: The system determines the best chain for fund allocation based on current yields and transfer costs.
+- Automated Decision Making: Our Lit Action script runs periodically to make informed decisions about fund transfers.
 
 ### Use Case
 We have implemented Lit Protocol for the following purpose:
@@ -189,8 +231,8 @@ We followed Envio's quick and easy guide to set up and index the contracts:
 
 We have deployed two subgraphs as part of our Envio integration:
 
-1. Subgraph 1: [https://indexer.bigdevenergy.link/93d433c/v1/graphql](https://indexer.bigdevenergy.link/93d433c/v1/graphql)
-2. Subgraph 2: [https://indexer.bigdevenergy.link/a861e6e/v1/graphql](https://indexer.bigdevenergy.link/a861e6e/v1/graphql)
+1. Aave yield API: [https://indexer.bigdevenergy.link/93d433c/v1/graphql](https://indexer.bigdevenergy.link/93d433c/v1/graphql)
+2. HyperHarvest N: [https://indexer.bigdevenergy.link/a861e6e/v1/graphql](https://indexer.bigdevenergy.link/a861e6e/v1/graphql)
 
 These subgraphs serve as the backbone for our data querying and retrieval system, allowing us to efficiently access indexed blockchain data.
 
@@ -255,13 +297,49 @@ HyperHarvest offers two primary ways for users to interact with the platform:
 This dual approach ensures that both crypto-native users and newcomers can easily access and benefit from our yield optimization platform.
 
 ## 🧮 Smart Contract Functions
-[TODO: Add key smart contract functions and their descriptions]
+
+- `userDeposit`
+Allows users to deposit assets into the contract.
+Mints shares to represent the user's deposit.
+
+- `userWithdraw`
+Enables users to withdraw assets from the contract.
+Burns shares and returns the corresponding assets to the user.
+
+- `supplyAssetToAave`
+Supplies the contract's token balance to Aave for yield generation.
+
+- `withdrawAssetFromAave`
+Withdraws all supplied tokens from Aave back to the contract.
+
+- `bridgeAndSupplyAssetToAave`
+Bridges tokens to another chain and supplies them to Aave on that chain.
+Prepares and sends a CCIP message for cross-chain transfer.
+
+- `withdrawBridgeAndSupplyAssetToAave`
+Combines withdrawal from Aave, bridging to another chain, and supplying to Aave on the destination chain.
+
+- `_ccipReceive`
+Handles the reception of CCIP messages.
+Transfers received tokens to the contract and executes the received message.
+
+- `totalAssets`
+Calculates the total amount of assets managed by the protocol.
+Includes assets in the contract, supplied to Aave, and on other chains.
+
+- `convertToShares` and `convertToAssets`
+Utility functions for converting between asset amounts and share amounts.
+
+- `setOwner` and `setAllowance`
+Administrative functions to manage contract ownership and allowed addresses.
+
+These functions collectively enable the core functionality of the HyperHarvest contract, including user deposits and withdrawals, cross-chain asset transfers, yield farming with Aave, and overall asset management.
 
 ## 🔮 Future Developments
 
 - Integration with additional DeFi protocols beyond AAVE
 - Expansion to more blockchain networks
-- Implementation of advanced yield optimization algorithms
+- Implementation of advanced yield optimization strategies and algorithms
 - Enhanced governance features for protocol parameters
 
 
