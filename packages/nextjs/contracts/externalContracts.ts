@@ -3,7 +3,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
  const externalContracts = {
     421614: {
      HyperHarvest: {
-        address: "0x6E81EBcc8fD26E083BFd6c84b17c93Bf20356ddF",
+        address: "0x72e9cf272dab6d97fdb48acbbe67b5b2689f9f91",
         abi: [
             {
                 "inputs": [
@@ -1337,7 +1337,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
     },
     11155420: {
      HyperHarvest: {
-        address: "0x5735dcF872c6a5988cBBD229E59395C743D72b2B",
+        address: "0x4cc6cc3a8dbb06e637ca78d93544ccaef2fa1954",
         abi: [
             {
                 "inputs": [
