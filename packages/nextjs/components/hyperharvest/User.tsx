@@ -140,7 +140,7 @@ const User = () => {
             </div>
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="avatar online">
-                <div className="w-8 h-8 rounded-full mr-4 lg:mr-auto overflow-hidden">
+                <div className="w-8 h-8 rounded-full ml-4 lg:mr-auto overflow-hidden">
                   {user.picture ? (
                     <Image
                       src={user.picture as any}
