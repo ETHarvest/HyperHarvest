@@ -1,7 +1,7 @@
 # HyperHarvest: Cross-Chain Yield Aggregator 🚀
 
 <p align="center">
-  <img src="packages/HH Logo.png" alt="HyperHarvest Logo" width="200" />
+  <img src="packages/HH-modified.png" alt="HyperHarvest Logo" width="200" />
 </p>
 
  ## 🪶 Overview 
