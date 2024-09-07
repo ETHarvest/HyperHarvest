@@ -62,12 +62,12 @@ Our yield aggregator implements several strategies to maximize returns for users
 
 ### Overview
 Our project utilizes Chainlink's Cross-Chain Interoperability Protocol (CCIP) to enable seamless transfer of USDC funds between different blockchain networks. The HyperHarvest contract serves as both a vault and a gateway for receiving CCIP messages and funds.
-Key Features
 
-### Cross-Chain Fund Transfer: 
-- Ability to move USDC funds between different blockchain networks.
-- Integrated Vault Functionality: HyperHarvest contract acts as a vault for storing user funds.
-- CCIP Message Handling: Built-in capability to process incoming CCIP messages and funds.
+### Key Features
+
+- **Cross-Chain Fund Transfer**: Ability to move USDC funds between different blockchain networks.
+- **Integrated Vault Functionality**: HyperHarvest contract acts as a vault for storing user funds.
+- **CCIP Message Handling**: Built-in capability to process incoming CCIP messages and funds.
 
 ### Technical Implementation
 #### CCIP Router Integration
@@ -99,9 +99,9 @@ function _ccipReceive(
 ```
 ### Benefits
 
-- Interoperability: Enables seamless movement of funds across different blockchain networks.
-- Enhanced Yield Opportunities: Allows users to access yield opportunities on multiple chains.
-- Automated Cross-Chain Operations: Facilitates automated fund transfers and yield farming across chains.
+- **Interoperability**: Enables seamless movement of funds across different blockchain networks.
+- **Enhanced Yield Opportunities**: Allows users to access yield opportunities on multiple chains.
+- **Automated Cross-Chain Operations**: Facilitates automated fund transfers and yield farming across chains.
 
 ## 🔥 Lit Protocol Integration
 
@@ -110,9 +110,9 @@ Our project leverages Lit Protocol to implement private strategies for our cross
 
 ### Key Features
 
-- Private Strategy Computation: We use Lit Actions to decrypt and compute private strategies.
-- Cross-Chain Yield Optimization: The system determines the best chain for fund allocation based on current yields and transfer costs.
-- Automated Decision Making: Our Lit Action script runs periodically to make informed decisions about fund transfers.
+- **Private Strategy Computation**: We use Lit Actions to decrypt and compute private strategies.
+- **Cross-Chain Yield Optimization**: The system determines the best chain for fund allocation based on current yields and transfer costs.
+- **Automated Decision Making**: Our Lit Action script runs periodically to make informed decisions about fund transfers.
 
 ### Use Case
 We have implemented Lit Protocol for the following purpose:
@@ -122,10 +122,10 @@ Decrypt private strategies within Lit Actions and perform computations within li
 
 ### Benefits
 
-- Competitive Advantage: Private strategies give us an edge over other yield aggregators.
-- Enhanced Security: Sensitive strategy data remains encrypted and is only decrypted within secure Lit Actions.
-- Optimized Yields: Regular computations ensure users always get the best possible yields.
-- User Experience: Automated decision-making provides a seamless experience for users.
+- **Competitive Advantage**: Private strategies give us an edge over other yield aggregators.
+- **Enhanced Security**: Sensitive strategy data remains encrypted and is only decrypted within secure Lit Actions.
+- **Optimized Yields**: Regular computations ensure users always get the best possible yields.
+- **User Experience**: Automated decision-making provides a seamless experience for users.
 
 ### Technical Implementation
 
@@ -158,18 +158,18 @@ Our project leverages XMTP (Extensible Message Transport Protocol) to enhance us
 
 ### Key Features
 
-1. **XMTP Bot**: We've developed a bot using the XMTP Message Kit, enabling users to interact with our protocol through the Converse app.
-2. **Conversational Interface**: Users can have direct conversations with the bot to perform various actions.
-3. **Asset Management**: Users can deposit assets to and withdraw yields from our cross-chain yield aggregator.
-4. **Notification Service**: XMTP is used to send real-time notifications about yield changes, deposits, and withdrawals.
+- **XMTP Bot**: We've developed a bot using the XMTP Message Kit, enabling users to interact with our protocol through the Converse app.
+- **Conversational Interface**: Users can have direct conversations with the bot to perform various actions.
+- **Asset Management**: Users can deposit assets to and withdraw yields from our cross-chain yield aggregator.
+- **Notification Service**: XMTP is used to send real-time notifications about yield changes, deposits, and withdrawals.
 
 ### User Interactions
 
 Users can perform the following actions through the XMTP bot:
 
-1. Engage in conversations with the bot
-2. Deposit assets to the cross-chain yield aggregator
-3. Withdraw their accumulated yield
+- Engage in conversations with the bot
+- Deposit assets to the cross-chain yield aggregator
+- Withdraw their accumulated yield
 
 ### Benefits
 
@@ -208,16 +208,16 @@ Our project utilizes Envio's HyperIndex to efficiently index blockchain data and
 
 ### Key Features
 
-1. **Real-time Data Indexing**: We use HyperIndex to index smart contract data in real-time.
-2. **High-Performance API**: HyperIndex allows us to build a real-time API for our blockchain application quickly and efficiently.
-3. **Seamless Integration**: The indexed data is seamlessly integrated into our application, enhancing its functionality and user experience.
+- **Real-time Data Indexing**: We use HyperIndex to index smart contract data in real-time.
+- **High-Performance API**: HyperIndex allows us to build a real-time API for our blockchain application quickly and efficiently.
+- **Seamless Integration**: The indexed data is seamlessly integrated into our application, enhancing its functionality and user experience.
 
 ### Use Cases
 
 We have implemented Envio's HyperIndex for the following purposes:
 
-1. **Aave Contract Indexing**: We index Aave contracts to monitor real-time liquidity changes in Aave.
-2. **HyperHarvest Contract Indexing**: We index our HyperHarvest contract to power a real-time notification system, which works in conjunction with XMTP.
+- **Aave Contract Indexing**: We index Aave contracts to monitor real-time liquidity changes in Aave.
+- **HyperHarvest Contract Indexing**: We index our HyperHarvest contract to power a real-time notification system, which works in conjunction with XMTP.
 
 ### Benefits
 
@@ -258,13 +258,13 @@ Our dApp integrates the Web3Auth MPC Core Kit SDK to simplify non-custodial wall
 
 ### Key Features:
 
-- Custom Google Authentication: Users log in with their Google accounts, and wallet creation happens automatically in the background using Web3Auth MPC-TSS. No additional setup is required.
-- Flexible JWT Flow: Users can authenticate using either Google or Farcaster (pending full integration), with the option to switch between them, enhancing security and control.
-- Automatic Wallet Generation: Web3 wallets are generated during the login process, giving users immediate access to features like token transfers without additional steps.
+- **Custom Google Authentication**: Users log in with their Google accounts, and wallet creation happens automatically in the background using Web3Auth MPC-TSS. No additional setup is required.
+- **Flexible JWT Flow**: Users can authenticate using either Google or Farcaster (pending full integration), with the option to switch between them, enhancing security and control.
+- **Automatic Wallet Generation**: Web3 wallets are generated during the login process, giving users immediate access to features like token transfers without additional steps.
 Core Technical Execution:
-- MPC-TSS Integration: We leverage Multi-Party Computation Threshold Signature Scheme (MPC-TSS) for secure key management, completely abstracted from the user.
-- Smart Contract Interaction: Users can perform transactions, like deposits or withdrawals, by interacting with AAVE and Chainlink-powered vaults using Web3Auth-generated wallets. This includes on-chain actions on Arbitrum and Optimism.
-- Persistent User Sessions: Using JWTs, we enable continuous user sessions, reducing the need for repeated logins. Data is locally stored for a smooth experience during future logins.
+- **MPC-TSS Integration**: We leverage Multi-Party Computation Threshold Signature Scheme (MPC-TSS) for secure key management, completely abstracted from the user.
+- **Smart Contract Interaction**: Users can perform transactions, like deposits or withdrawals, by interacting with AAVE and Chainlink-powered vaults using Web3Auth-generated wallets. This includes on-chain actions on Arbitrum and Optimism.
+- **Persistent User Sessions**: Using JWTs, we enable continuous user sessions, reducing the need for repeated logins. Data is locally stored for a smooth experience during future logins.
 
 ### How It Works:
 
@@ -290,9 +290,8 @@ HyperHarvest offers two primary ways for users to interact with the platform:
 
 ### XMTP Bot in Converse App:
 
-- Deposit and withdraw using chat commands
-- Receive real-time notifications
-
+- Deposit and withdraw using chat commands 
+- Receive real-time notifications for user deposits, user withdrawal, Cross chain fund transfer and yield updates .
 
 ### Web Interface with Web3Auth:
 
