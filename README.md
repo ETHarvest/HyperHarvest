@@ -1,7 +1,8 @@
-# HyperHarvest: Cross-Chain Yield Aggregator
+# HyperHarvest: Cross-Chain Yield Aggregator 🚀
 
 ## Overview
-HyperHarvest is an innovative cross-chain yield aggregator that maximizes USDC returns across Arbitrum Sepolia and Optimism Sepolia testnets. Our platform stands out through its use of private, encrypted yield optimization strategies, providing a unique competitive edge in the DeFi landscape.
+
+HyperHarvest is an innovative cross-chain yield aggregator that maximizes USDC returns across Arbitrum Sepolia and Optimism Sepolia testnets. Our platform stands out through its use of private, encrypted yield optimization strategies, providing a unique competitive edge in the DeFi landscape .
 
 ## Key features:
 
@@ -24,9 +25,14 @@ While our strategies remain private, we prioritize transparency through real-tim
 By combining cutting-edge technology with user-centric design, HyperHarvest offers a secure, efficient, and user-friendly platform for optimizing USDC yields across multiple blockchain networks.
 
 ## Contract Addresses
-[TODO: Add contract addresses for HyperHarvest on Arbitrum Sepolia and Optimism Sepolia]
-Envio Indexer API Endpoints
-[TODO: Add Envio indexer API endpoints]
+
+- (Arbitrum Sepolia):
+[HyperHarvest Arbitrum](https://sepolia.arbiscan.io/address/0x72e9cf272dab6d97fdb48acbbe67b5b2689f9f91#code)
+- (Optimism Sepolia):
+[HyperHarvest Optimism](https://sepolia-optimism.etherscan.io/address/0x4cc6cc3a8dbb06e637ca78d93544ccaef2fa1954#code)
+
+## Envio Indexer API Endpoints
+
 
 ## Architecture
 The system consists of a single smart contract:
@@ -34,7 +40,9 @@ The system consists of a single smart contract:
 HyperHarvest Contract (deployed on each supported chain)
 
 This contract interacts with AAVE lending pools on their respective chains and utilizes Chainlink's CCIP for secure inter-chain communications and transfers.
-[TODO: Add architecture diagram]
+<p align="center">
+  <img src="packages/HH Architecture.png" alt="Hyper Harvest Architecture" width="600" />
+</p>
 
 ## Optimized Yield Aggregation
 Our yield aggregator implements several strategies to maximize returns for users:
