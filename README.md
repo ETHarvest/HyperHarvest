@@ -2,7 +2,8 @@
 
 ## Overview
 HyperHarvest is an innovative cross-chain yield aggregator that maximizes USDC returns across Arbitrum Sepolia and Optimism Sepolia testnets. Our platform stands out through its use of private, encrypted yield optimization strategies, providing a unique competitive edge in the DeFi landscape.
-Key features:
+
+## Key features:
 
 - Deposit USDC on Arbitrum Sepolia or Optimism Sepolia using our webApp or using XMTP bot in converse
 - Earn optimized yield through AAVE lending protocols across multiple chains
