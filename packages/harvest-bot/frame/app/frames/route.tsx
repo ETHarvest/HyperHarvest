@@ -4,7 +4,7 @@ import { frames } from "./frames";
 const handleRequest = frames(async (ctx) => {
 
   return {
-    image: "https://i.postimg.cc/KvhmX4bx/img.png",
+    image: "https://i.postimg.cc/5t4gdM0Q/HH.png",
     buttons: [
       <Button
         action='post'
