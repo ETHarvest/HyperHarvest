@@ -23,7 +23,7 @@ run(async (context: HandlerContext) => {
     if (text.startsWith("/")) {
       await context.intent(text);
     } else {
-      context.reply("hello");
+      context.reply("Hello! Welcome to HyperHarvest");
     }
   } else {
     context.reply("hello");

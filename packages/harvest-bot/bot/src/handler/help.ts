@@ -11,6 +11,8 @@ Commands you can use:
 
 /withdraw [amount] -> Withdraw a specified amount of USDC
 
+/agent -> Use our AI agent
+
 /help -> Get help and information about available commands
     `;
   
