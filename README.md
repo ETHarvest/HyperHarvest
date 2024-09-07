@@ -148,7 +148,9 @@ Based on the Lit Action's response, we use Chainlink's Cross-Chain Interoperabil
 
 ### Code 
 For the detailed implementation of our Lit Protocol integration, please refer to:
-[StrategyExecutor Script](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/scripts/strategyExecutor.js)
+
+- [StrategyExecutor Script](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/scripts/strategyExecutor.js)
+- [Lit Action](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/utils/lit-protocol/strategyAction.js)
 
 ## 💬 XMTP Integration
 
