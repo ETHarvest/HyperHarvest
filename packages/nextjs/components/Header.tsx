@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import User from "./hyperharvest/User";
-import { Bars3Icon } from "@heroicons/react/24/outline";;
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import { useOutsideClick } from "~~/hooks/scaffold-eth";
 
 type HeaderMenuLink = {
@@ -27,6 +27,10 @@ export const menuLinks: HeaderMenuLink[] = [
     label: "Harvest",
     href: "/harvest",
   },
+  {
+    label: "Docs",
+    href: "https://eth-harvest.gitbook.io/hyperharvest/overview/introduction/project-overview",
+  },
 ];
 
 export const HeaderMenuLinks = () => {
@@ -36,18 +40,33 @@ export const HeaderMenuLinks = () => {
     <>
       {menuLinks.map(({ label, href, icon }) => {
         const isActive = pathname === href;
+        const isExternal = href.startsWith("http");
         return (
           <li key={href}>
-            <Link
-              href={href}
-              passHref
-              className={`${
-                isActive ? "bg-secondary shadow-md" : ""
-              } hover:bg-secondary hover:shadow-md focus:!bg-secondary active:!text-neutral py-1.5 px-3 text-sm rounded-full gap-2 grid grid-flow-col`}
-            >
-              {icon}
-              <span>{label}</span>
-            </Link>
+            {isExternal ? (
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${
+                  isActive ? "bg-[#ac8d2c] shadow-md" : ""
+                } hover:bg-[#f9d569] hover:shadow-md focus:!bg-[#ac8d2c] active:!text-neutral py-1.5 px-3 text-sm rounded-xl gap-2 grid grid-flow-col`}
+              >
+                {icon}
+                <span>{label}</span>
+              </a>
+            ) : (
+              <Link
+                href={href}
+                passHref
+                className={`${
+                  isActive ? "bg-[#ac8d2c] shadow-md" : ""
+                } hover:bg-[#f9d569] hover:shadow-md focus:!bg-[#ac8d2c] active:!text-neutral py-1.5 px-3 text-sm rounded-xl gap-2 grid grid-flow-col`}
+              >
+                {icon}
+                <span>{label}</span>
+              </Link>
+            )}
           </li>
         );
       })}
@@ -67,7 +86,7 @@ export const Header = () => {
   );
 
   return (
-    <div className="sticky lg:static top-0 navbar bg-base-100 min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary px-0 sm:px-2">
+    <div className="sticky lg:static top-0 navbar bg-base-100 min-h-0 flex-shrink-0 justify-between z-20 shadow-sm shadow-gray-400 px-0 sm:px-2">
       <div className="navbar-start w-auto lg:w-1/2">
         <div className="lg:hidden dropdown" ref={burgerMenuRef}>
           <label
@@ -93,14 +112,14 @@ export const Header = () => {
         </div>
         <Link href="/" passHref className="hidden lg:flex items-center gap-2 ml-4 mr-6 shrink-0">
           <div className="flex relative w-10 h-10">
-            <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" />
+            {/* <Image alt="SE2 logo" className="cursor-pointer" fill src="/logo.svg" /> */}
           </div>
           <div className="flex flex-col">
-            <span className="font-bold leading-tight">HyperHarvest</span>
-            <span className="text-xs">Cross-chain yield farm</span>
+            <span className="font-bold uppercase text-xl tracking-widest">HyperHarvest</span>
+            {/* <span className="text-xs">Cross-chain yield farm</span> */}
           </div>
         </Link>
-        <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-1 gap-2">
+        <ul className="hidden lg:flex lg:flex-nowrap menu menu-horizontal px-60 gap-10">
           <HeaderMenuLinks />
         </ul>
       </div>
