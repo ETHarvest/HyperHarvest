@@ -1,10 +1,10 @@
 # HyperHarvest: Cross-Chain Yield Aggregator 🚀
 
-## Overview
+ ## 🪶 Overview 
 
 HyperHarvest is an innovative cross-chain yield aggregator that maximizes USDC returns across Arbitrum Sepolia and Optimism Sepolia testnets. Our platform stands out through its use of private, encrypted yield optimization strategies, providing a unique competitive edge in the DeFi landscape .
 
-## Key features:
+## ✏️ Key features 
 
 - Deposit USDC on Arbitrum Sepolia or Optimism Sepolia using our webApp or using XMTP bot in converse
 - Earn optimized yield through AAVE lending protocols across multiple chains
@@ -24,27 +24,27 @@ While our strategies remain private, we prioritize transparency through real-tim
 
 By combining cutting-edge technology with user-centric design, HyperHarvest offers a secure, efficient, and user-friendly platform for optimizing USDC yields across multiple blockchain networks.
 
-## Contract Addresses
+## 🛂 Contract Addresses 
 
 - (Arbitrum Sepolia):
 [HyperHarvest Arbitrum](https://sepolia.arbiscan.io/address/0x72e9cf272dab6d97fdb48acbbe67b5b2689f9f91#code)
 - (Optimism Sepolia):
 [HyperHarvest Optimism](https://sepolia-optimism.etherscan.io/address/0x4cc6cc3a8dbb06e637ca78d93544ccaef2fa1954#code)
 
-## Envio Indexer API Endpoints
+## Envio Indexer API Endpoints 
 
 
-## Architecture
+## 🏡 Architecture 
 The system consists of a single smart contract:
 
 HyperHarvest Contract (deployed on each supported chain)
 
 This contract interacts with AAVE lending pools on their respective chains and utilizes Chainlink's CCIP for secure inter-chain communications and transfers.
 <p align="center">
-  <img src="packages/HH Architecture.png" alt="Hyper Harvest Architecture" width="600" />
+  <img src="packages/HH Architecture.png" alt="Hyper Harvest Architecture" width="800" />
 </p>
 
-## Optimized Yield Aggregation
+## 📀 Optimized Yield Aggregation 
 Our yield aggregator implements several strategies to maximize returns for users:
 
 - Multi-chain Yield Comparison: Continuously monitors yield rates across supported chains.
@@ -52,11 +52,11 @@ Our yield aggregator implements several strategies to maximize returns for users
 - Gas-Optimized Transfers: Utilizes Chainlink's CCIP for efficient and secure cross-chain operations.
 - Risk Management: Diversifies funds across multiple chains to mitigate potential risks.
 
-## Chainlink CCIP Integration
+## 🟦 Chainlink CCIP Integration
 
 We leverage Chainlink's Cross-Chain Interoperability Protocol (CCIP) for managing cross-chain fund transfers with industry-leading security.
 
-## Lit Protocol Integration
+## 🔥 Lit Protocol Integration
 
 ### Overview
 Our project leverages Lit Protocol to implement private strategies for our cross-chain yield aggregator. This integration allows us to compute over private data, determining optimal fund allocation across different chains while maintaining strategy confidentiality.
@@ -102,7 +102,7 @@ Based on the Lit Action's response, we use Chainlink's Cross-Chain Interoperabil
 For the detailed implementation of our Lit Protocol integration, please refer to:
 [StrategyExecutor Script](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/scripts/strategyExecutor.js)
 
-## XMTP Integration
+## 💬 XMTP Integration
 
 ### Overview
 
@@ -152,7 +152,7 @@ To enhance the user experience and provide more intelligent interactions, we inc
 By integrating XMTP into our project, we've created a more accessible and user-friendly interface for our cross-chain yield aggregator. This integration allows users to manage their assets, receive important notifications, and interact with our protocol seamlessly through a messaging app, significantly lowering the barrier to entry for blockchain-based financial services.
 
 
-## Envio Integration
+## 📅 Envio Integration
 
 ### Overview
 
@@ -204,31 +204,39 @@ By integrating Envio's HyperIndex into our project, we've significantly enhanced
 
 
 
-## Web3Auth MPC Core Kit Integration
+## 🕸️ Web3Auth MPC Core Kit Integration
 
 Our dApp integrates the Web3Auth MPC Core Kit SDK to simplify non-custodial wallet creation, streamlining the onboarding process. With Google Sign-In and custom JWT authentication, users can connect using existing credentials, eliminating the complexities of web3 interaction. This allows them to seamlessly perform key actions such as deposits and withdrawals.
+
 ### Key Features:
+
 - Custom Google Authentication: Users log in with their Google accounts, and wallet creation happens automatically in the background using Web3Auth MPC-TSS. No additional setup is required.
-Flexible JWT Flow: Users can authenticate using either Google or Farcaster (pending full integration), with the option to switch between them, enhancing security and control.
-Automatic Wallet Generation: Web3 wallets are generated during the login process, giving users immediate access to features like token transfers without additional steps.
+- Flexible JWT Flow: Users can authenticate using either Google or Farcaster (pending full integration), with the option to switch between them, enhancing security and control.
+- Automatic Wallet Generation: Web3 wallets are generated during the login process, giving users immediate access to features like token transfers without additional steps.
 Core Technical Execution:
-MPC-TSS Integration: We leverage Multi-Party Computation Threshold Signature Scheme (MPC-TSS) for secure key management, completely abstracted from the user.
-Smart Contract Interaction: Users can perform transactions, like deposits or withdrawals, by interacting with AAVE and Chainlink-powered vaults using Web3Auth-generated wallets. This includes on-chain actions on Arbitrum and Optimism.
-Persistent User Sessions: Using JWTs, we enable continuous user sessions, reducing the need for repeated logins. Data is locally stored for a smooth experience during future logins.
-How It Works:
-Login: Users sign in with Google, triggering a custom JWT process via Web3Auth MPC Core Kit SDK. Wallets are automatically created during login.
-Transactions: Users can make deposits or withdrawals via their Web3Auth-generated wallet without dealing with gas fees or blockchain intricacies.
-On-Chain: Transactions like depositing USDC into vaults are facilitated via smart contracts on Arbitrum and Optimism.
+- MPC-TSS Integration: We leverage Multi-Party Computation Threshold Signature Scheme (MPC-TSS) for secure key management, completely abstracted from the user.
+- Smart Contract Interaction: Users can perform transactions, like deposits or withdrawals, by interacting with AAVE and Chainlink-powered vaults using Web3Auth-generated wallets. This includes on-chain actions on Arbitrum and Optimism.
+- Persistent User Sessions: Using JWTs, we enable continuous user sessions, reducing the need for repeated logins. Data is locally stored for a smooth experience during future logins.
 
-Limitations:
-Farcaster Login: The Farcaster login flow is partially integrated and remains incomplete.
-MFA Sharing: While MFA is enabled, the ability for users to share or export their MFA factor key is not yet available.
-Future Improvements:
-Complete the Farcaster login integration.
-Add functionality for users to share or export their MFA factor key across devices.
-Ensure seamless chain switching in the frontend to allow users to switch between Arbitrum and Optimism effortlessly.
+### How It Works:
 
-## User Experience
+- Login: Users sign in with Google, triggering a custom JWT process via Web3Auth MPC Core Kit SDK.
+- Wallets are automatically created during login.
+- Transactions: Users can make deposits or withdrawals via their Web3Auth-generated wallet without dealing with gas fees or blockchain intricacies.
+- On-Chain: Transactions like depositing USDC into vaults are facilitated via smart contracts on Arbitrum and Optimism.
+
+### Limitations:
+
+- Farcaster Login: The Farcaster login flow is partially integrated and remains incomplete.
+- MFA Sharing: While MFA is enabled, the ability for users to share or export their MFA factor key is not yet available.
+
+### Future Improvements:
+
+- Complete the Farcaster login integration.
+- Add functionality for users to share or export their MFA factor key across devices.
+- Ensure seamless chain switching in the frontend to allow users to switch between Arbitrum and Optimism effortlessly.
+
+## 🙂 User Experience
 
 HyperHarvest offers two primary ways for users to interact with the platform:
 
@@ -246,10 +254,10 @@ HyperHarvest offers two primary ways for users to interact with the platform:
 
 This dual approach ensures that both crypto-native users and newcomers can easily access and benefit from our yield optimization platform.
 
-## Smart Contract Functions
+## 🧮 Smart Contract Functions
 [TODO: Add key smart contract functions and their descriptions]
 
-## Future Developments
+## 🔮 Future Developments
 
 - Integration with additional DeFi protocols beyond AAVE
 - Expansion to more blockchain networks
