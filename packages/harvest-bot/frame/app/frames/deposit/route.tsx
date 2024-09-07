@@ -23,6 +23,11 @@ const handleRequest = frames(async (ctx) => {
       </Button>,
     ],
     textInput: "Enter Amount in USDC",
+    input: {
+      text: "Select network",
+      type: "select",
+      options: ["optimism-sepolia", "arbitrum-sepolia"],
+    },
   };
 });
 
