@@ -1,5 +1,9 @@
 # HyperHarvest: Cross-Chain Yield Aggregator 🚀
 
+<p align="center">
+  <img src="packages/HH Logo.png" alt="HyperHarvest Logo" width="200" />
+</p>
+
  ## 🪶 Overview 
 
 HyperHarvest is an innovative cross-chain yield aggregator that maximizes USDC returns across Arbitrum Sepolia and Optimism Sepolia testnets. Our platform stands out through its use of private, encrypted yield optimization strategies, providing a unique competitive edge in the DeFi landscape .
