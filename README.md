@@ -297,7 +297,7 @@ Core Technical Execution:
 
 ### Limitations:
 
-- Farcaster Login: The Farcaster login flow is partially integrated and remains incomplete.
+- [Farcaster Login](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/app/api/auth/): The Farcaster login flow is partially integrated and remains incomplete.
 - [MFA Sharing](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/app/settings/page.tsx#L38): While MFA is enabled, the ability for users to share or export their MFA factor key is not yet available.
 
 ### Future Improvements:

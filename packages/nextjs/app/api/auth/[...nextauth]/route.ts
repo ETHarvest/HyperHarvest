@@ -1,4 +1,4 @@
-// app/api/auth/[...nextauth]/route.ts
+
 import { createAppClient, viemConnector } from "@farcaster/auth-client";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
