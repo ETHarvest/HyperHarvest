@@ -212,10 +212,15 @@ To enhance the user experience and provide more intelligent interactions, we inc
 
 By integrating XMTP into our project, we've created a more accessible and user-friendly interface for our cross-chain yield aggregator. This integration allows users to manage their assets, receive important notifications, and interact with our protocol seamlessly through a messaging app, significantly lowering the barrier to entry for blockchain-based financial services.
 
+### Code 
+For the detailed implementation of our XMTP Protocol integration, please refer to:
+
+- [Harvest-bot](https://github.com/ETHarvest/HyperHarvest/tree/main/packages/harvest-bot)
+- [Notification-script](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/scripts/notificationServer.js)
 
 ## 📅 Envio Integration
 
-### Overview
+### Overview 
 
 Our project utilizes Envio's HyperIndex to efficiently index blockchain data and serve it to our application. HyperIndex is designed to deliver superior performance and provide a seamless developer experience, which in turn optimizes the user experience of our application.
 
@@ -263,7 +268,11 @@ The Envio integration complements our XMTP implementation by providing the backe
 
 By integrating Envio's HyperIndex into our project, we've significantly enhanced our ability to provide real-time, accurate blockchain data to our users. This integration works hand-in-hand with our XMTP implementation to create a responsive, informative, and user-friendly application that keeps users updated on critical changes and events in real-time.
 
+### Code 
+For the detailed implementation of our Envio integration, please refer to:
 
+- [Aave-indexer](https://github.com/ETHarvest/HyperHarvest/tree/main/Indexer/aave)
+- [HyperHarvest-indexer](https://github.com/ETHarvest/HyperHarvest/tree/main/Indexer/hyperharvest)
 
 ## 🕸️ Web3Auth MPC Core Kit Integration
 
