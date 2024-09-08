@@ -9,7 +9,8 @@
 HyperHarvest is an innovative cross-chain yield aggregator that maximizes USDC returns across Arbitrum Sepolia and Optimism Sepolia testnets. Our platform stands out through its use of private, encrypted yield optimization strategies, providing a unique competitive edge in the DeFi landscape .
 
 Start Harvesting : [HyperHarvest](https://hyperharvest.vercel.app/) \
-XMTP Bot (Converse App) : [0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED](0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED)
+XMTP Bot (Converse App) : [0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED](0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED)\
+Docs : [HyperHarvest Documentation](https://eth-harvest.gitbook.io/hyperharvest)
 
 ## ✏️ Key features 
 
