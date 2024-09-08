@@ -85,7 +85,6 @@ export const Web3AuthProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       const accounts = await walletClient.getAddresses();
       if (accounts.length === 0) throw new Error("No accounts found. Please connect a wallet.");
       setUserAddresses(accounts);
-      // console.log("aa accounts: ", accounts);
     } catch (error) {
       console.error("Error fetching addresses:", error);
     }
