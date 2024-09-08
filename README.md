@@ -372,13 +372,14 @@ To get started with HyperHarvest, follow the steps below:
 
 1. **Clone this repo & install dependencies**
 
-   ```bash
+   ```
    git clone https://github.com/ETHarvest/HyperHarvest.git
    cd HyperHarvest
    yarn install
+   ```
 
 2. **Start your NextJS app**
-  ```bash
+  ```
   yarn start
   ```
 
