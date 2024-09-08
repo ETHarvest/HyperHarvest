@@ -109,6 +109,11 @@ function _ccipReceive(
 - **Enhanced Yield Opportunities**: Allows users to access yield opportunities on multiple chains.
 - **Automated Cross-Chain Operations**: Facilitates automated fund transfers and yield farming across chains.
 
+### Code 
+For detailed implementation of how CCIP is integrated , please refer :
+
+[HyperHarvest Contract](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/foundry/contracts/HyperHarvest.sol)
+
 ## 🔥 Lit Protocol Integration
 
 ### Overview
