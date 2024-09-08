@@ -1,4 +1,10 @@
-# Why This Matters
+---
+cover: >-
+  https://images.unsplash.com/photo-1571686683059-4b1bf2086a13?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxOTcwMjR8MHwxfHNlYXJjaHw4fHx3aHl8ZW58MHx8fHwxNzI1NzgxMzU5fDA&ixlib=rb-4.0.3&q=85
+coverY: 0
+---
+
+# 🕰️ Why This Matters
 
 In the rapidly evolving world of decentralized finance, yield optimization has become a crucial aspect for investors looking to maximize their returns. Our Cross-Chain Yield Aggregator addresses several key pain points in the current DeFi landscape:
 

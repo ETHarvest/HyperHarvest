@@ -1,8 +1,11 @@
 ---
 description: Features of HyperHarvest
+cover: >-
+  https://images.unsplash.com/photo-1600137392573-9a79e423645b?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxOTcwMjR8MHwxfHNlYXJjaHw2fHxmZWF0dXJlc3xlbnwwfHx8fDE3MjU3ODEyNzd8MA&ixlib=rb-4.0.3&q=85
+coverY: 0
 ---
 
-# Key Features
+# 🪶 Key Features
 
 1. **Cross-Chain Yield Optimization**: Automatically moves funds between different chains to maximize yield.
 2. **Private Strategies**: Utilizes encrypted, proprietary strategies for yield optimization, providing a competitive edge.

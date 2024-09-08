@@ -1,12 +1,12 @@
 ---
 cover: >-
-  https://images.unsplash.com/photo-1518231365576-99dafdedcd69?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxOTcwMjR8MHwxfHNlYXJjaHw2fHxndWlkZXxlbnwwfHx8fDE3MjU3ODIyOTJ8MA&ixlib=rb-4.0.3&q=85
+  https://images.unsplash.com/photo-1560144916-c3698cd3b8f8?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxOTcwMjR8MHwxfHNlYXJjaHw4fHx1c2VyJTIwR3VpZGV8ZW58MHx8fHwxNzI1NzgzNzQzfDA&ixlib=rb-4.0.3&q=85
 coverY: 0
 ---
 
-# 📒 Quick Start Guide
+# 🙎‍♂️ User Guide
 
-### Web App Interface :
+### Web App Interface :  [HyperHarvest](https://hyperharvest.vercel.app/)
 
 1. **SignIn with google** :
    * Click on the "signIn with google " button in the top right corner of the website.
@@ -27,7 +27,7 @@ coverY: 0
 
 1.  **Open Chat** :
 
-    In the converse app open the chat at address [0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED](../../../0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED)
+    In the converse app open the chat at address [0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED](../../0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED)
 2. **Help** :\
    Enter /help in the chat bot (this will show you all the available commands)
 3. **Deposit** :\

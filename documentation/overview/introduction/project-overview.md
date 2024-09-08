@@ -1,8 +1,11 @@
 ---
 description: 'Overview of HyperHarvest : Cross Chain Yield Aggregator'
+cover: >-
+  https://images.unsplash.com/photo-1559739790-d3496073d0fe?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxOTcwMjR8MHwxfHNlYXJjaHw4fHxvdmVydmlld3xlbnwwfHx8fDE3MjU3ODExNzJ8MA&ixlib=rb-4.0.3&q=85
+coverY: 0
 ---
 
-# Project Overview
+# 🍀 Project Overview
 
 HyperHarvest is a state-of-the-art Cross-Chain Yield Aggregator, representing a paradigm shift in decentralized finance (DeFi) solutions. Our platform is engineered to optimize USDC yield across multiple blockchain networks, harnessing the synergy of cross-chain interoperability and private yield optimization strategies using CCIP and Lit Protocol . This innovative approach provides users with an unparalleled opportunity to maximize returns on their USDC holdings.\
 
@@ -15,7 +18,7 @@ HyperHarvest distinguishes itself through its commitment to user accessibility a
 1. **Web3 Wallet-Free Interaction**:\
    &#x20;Through our integration of Web3Auth, users can seamlessly interact with our platform without the prerequisite of a Web3 wallet. This feature significantly lowers the entry barrier for cryptocurrency novices and enhances convenience for experienced users.\
 
-2. **`Converse App Integration`**`:`\
+2. **Converse App Integration**:\
    &#x20;We've developed a sophisticated integration with the Converse application, powered by XMTP (Extensible Message Transport Protocol) technology. This integration serves dual purposes: a) **Alternative Interface for Core Functions**: Users can execute essential operations such as deposits and withdrawals directly through the Converse app, providing a familiar messaging-like interface for blockchain interactions. b) **Real-Time Notification System**: The Converse app serves as a channel for delivering instantaneous notifications to users. These notifications cover critical events including successful deposits, completed withdrawals, significant yield fluctuations, and cross-chain fund transfers.\
 
 

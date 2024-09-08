@@ -1,5 +1,6 @@
 ---
-cover: https://gitbookio.github.io/onboarding-template-images/header.png
+cover: >-
+  https://images.unsplash.com/photo-1471268762677-cb5179779bfe?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxOTcwMjR8MHwxfHNlYXJjaHw2fHxoYXJ2ZXN0fGVufDB8fHx8MTcyNTc4MDg1N3ww&ixlib=rb-4.0.3&q=85
 coverY: 0
 layout:
   cover:
@@ -17,12 +18,9 @@ layout:
     visible: true
 ---
 
-# Welcome
+# 🌽 Hyper Harvest
 
-Welcome to the GitBook Starter Template! Here you'll get an overview of all the amazing features GitBook offers to help you build beautiful, interactive documentation.
-
-You'll see some of the best parts of GitBook in action — and find help on how you can turn this template into your own.
-
-### Jump right in
-
-<table data-view="cards"><thead><tr><th></th><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td><strong>Getting Started</strong></td><td>Create your first site</td><td><a href=".gitbook/assets/1.png">1.png</a></td><td></td><td><a href="overview/introduction/">introduction</a></td></tr><tr><td><strong>Basics</strong></td><td>Learn the basics of GitBook</td><td><a href=".gitbook/assets/2.png">2.png</a></td><td></td><td><a href="broken-reference">Broken link</a></td></tr><tr><td><strong>Publish your docs</strong></td><td>Share your docs online</td><td><a href=".gitbook/assets/3.png">3.png</a></td><td></td><td><a href="overview/getting-started/">getting-started</a></td></tr></tbody></table>
+HyperHarvest is an innovative cross-chain yield aggregator that maximizes USDC returns across Arbitrum Sepolia and Optimism Sepolia testnets. Our platform stands out through its use of private, encrypted yield optimization strategies, providing a unique competitive edge in the DeFi landscape .\
+\
+Start Harvesting :[ HyperHarvest](https://hyperharvest.vercel.app/)\
+XMTP Bot (Converse App ) : [0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED](../0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED)

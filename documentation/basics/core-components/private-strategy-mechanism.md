@@ -1,4 +1,10 @@
-# Private Strategy Mechanism
+---
+cover: >-
+  https://images.unsplash.com/photo-1527057629248-91865e448574?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxOTcwMjR8MHwxfHNlYXJjaHw1fHxwcml2YXRlfGVufDB8fHx8MTcyNTc4Mjc2MXww&ixlib=rb-4.0.3&q=85
+coverY: 0
+---
+
+# 📠 Private Strategy Mechanism
 
 Our private strategy is the secret sauce that gives our platform its edge. Here's how it works:
 
