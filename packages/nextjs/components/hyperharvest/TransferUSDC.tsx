@@ -1,6 +1,6 @@
 import { FormEvent, useRef, useState } from "react";
-import { showTxnNotification } from "./Notify";
 import { Address, AddressInput, IntegerInput } from "../scaffold-eth";
+import { showTxnNotification } from "./Notify";
 import { erc20Abi, isAddress, parseUnits } from "viem";
 import { readContract, writeContract } from "viem/actions";
 import { arbitrumSepolia } from "viem/chains";
@@ -103,23 +103,19 @@ export const TransferUSDC = () => {
         {transferStatus && <div className="mt-4 italic text-center">{transferStatus}</div>}
       </div>
       <form onSubmit={handleSubmit} className="flex flex-col space-y-8 w-full">
-        <AddressInput 
-          placeholder="Recipient address" 
-          value={recipient} 
+        <AddressInput
+          placeholder="Recipient address"
+          value={recipient}
           onChange={e => setRecipient(e)}
-          disabled={!walletClient || isLoading} 
+          disabled={!walletClient || isLoading}
         />
-        <IntegerInput 
-          placeholder="USDC Amount" 
-          value={amount} 
+        <IntegerInput
+          placeholder="USDC Amount"
+          value={amount}
           onChange={e => setAmount(e)}
           disabled={!walletClient || isLoading}
-          />
-        <button 
-          type="submit" 
-          className="btn btn-primary"
-          disabled={!walletClient || isLoading}
-          >
+        />
+        <button type="submit" className="btn btn-primary" disabled={!walletClient || isLoading}>
           Transfer
         </button>
       </form>

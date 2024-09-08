@@ -1,6 +1,6 @@
 import React, { FormEvent, useRef, useState } from "react";
-import { showTxnNotification } from "./Notify";
 import { Address, AddressInput, EtherInput } from "../scaffold-eth";
+import { showTxnNotification } from "./Notify";
 import { isAddress, parseUnits } from "viem";
 import { useWeb3Auth } from "~~/context/Web3Context";
 
@@ -75,17 +75,13 @@ export const TransferETH = () => {
           onChange={e => setRecipient(e)}
           disabled={!walletClient || isLoading}
         />
-        <EtherInput 
-          placeholder="Value in ETH" 
-          value={value} 
+        <EtherInput
+          placeholder="Value in ETH"
+          value={value}
           onChange={e => setValue(e)}
           disabled={!walletClient || isLoading}
-          />
-        <button 
-          type="submit" 
-          className="btn btn-primary"
-          disabled={!walletClient || isLoading}
-          >
+        />
+        <button type="submit" className="btn btn-primary" disabled={!walletClient || isLoading}>
           {isLoading ? "Sending..." : "Transfer"}
         </button>
       </form>

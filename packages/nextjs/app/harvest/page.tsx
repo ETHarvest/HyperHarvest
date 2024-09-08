@@ -1,15 +1,13 @@
-"use client"
+"use client";
 
-
-import Harvest from "~~/components/hyperharvest/Harvest"
-
+import Harvest from "~~/components/hyperharvest/Harvest";
 
 const page = () => {
   return (
     <div className="w-full h-full">
-        <Harvest />
+      <Harvest />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

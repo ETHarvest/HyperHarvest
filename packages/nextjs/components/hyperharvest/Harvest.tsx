@@ -96,9 +96,6 @@ const Harvest = () => {
         account: userAddresses[0],
       });
 
-      
-      console.log(withdrawTx)
-
       showTxnNotification("Withdrawal successful!", `https://sepolia.arbiscan.io/tx/${withdrawTx}`);
     } catch (error) {
       console.error("Withdrawal failed:", error);
@@ -162,9 +159,8 @@ const Harvest = () => {
   }, [walletClient, userAddresses, refresh]);
 
   useEffect(() => {
-    const delayDebounce = setTimeout( async () => {
+    const delayDebounce = setTimeout(async () => {
       if (walletClient && userAddresses.length && amount && Number(amount) > 0) {
-        
         await updatePreview();
       }
     }, 500);
@@ -178,7 +174,7 @@ const Harvest = () => {
     try {
       let result;
       result = await previewAssetsToShares(walletClient, ARBHHContractAddress, ARBHHContractABI, parsedAmount);
-        
+
       setPreview(result || "0");
     } catch (error) {
       console.error("Error updating preview:", error);
@@ -199,7 +195,6 @@ const Harvest = () => {
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* USDC Balances */}
                     <div className="border border-base-300 p-4 rounded-lg">
                       <h4 className="text-lg font-semibold mb-2">USDC Balances</h4>
                       <div className="flex flex-col space-y-2">
@@ -210,7 +205,6 @@ const Harvest = () => {
                       </div>
                     </div>
 
-                    {/* Share Holdings */}
                     <div className="border border-base-300 p-4 rounded-lg">
                       <h4 className="text-lg font-semibold mb-2">Share Holdings</h4>
                       <div className="flex flex-col space-y-10">
@@ -237,7 +231,6 @@ const Harvest = () => {
                       </div>
                     </div>
 
-                    {/* Contract Details */}
                     <div className="border border-base-300 p-4 rounded-lg">
                       <h4 className="text-lg font-semibold mb-4">Contract Details</h4>
                       <div className="flex lg:text-xl flex-col space-y-10">
@@ -252,7 +245,6 @@ const Harvest = () => {
                       </div>
                     </div>
 
-                    {/* Performance */}
                     <div className="border border-base-300 p-4 rounded-lg">
                       <h4 className="text-lg font-semibold mb-2">Performance</h4>
                       <div className="flex flex-col space-y-2">
@@ -357,7 +349,7 @@ const Harvest = () => {
           <div className="rounded-lg relative z-10 bg-white space-y-20 shadow-lg p-8 min-w-[30%]" ref={modalRef}>
             <h3 className="font-bold text-center text-lg">Confirm {activeTab}</h3>
             <div className="flex justify-center py-8 whitespace-nowrap space-x-4">
-              {activeTab} <br /> <strong>{ amount} USDC</strong>
+              {activeTab} <br /> <strong>{amount} USDC</strong>
               <span> {activeTab === "Deposit" ? "into" : "from"} Hyper Harvest</span>
             </div>
 
