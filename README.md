@@ -262,17 +262,17 @@ By integrating Envio's HyperIndex into our project, we've significantly enhanced
 
 ## 🕸️ Web3Auth MPC Core Kit Integration
 
-Our dApp integrates the Web3Auth MPC Core Kit SDK to simplify non-custodial wallet creation, streamlining the onboarding process. With Google Sign-In and custom JWT authentication, users can connect using existing credentials, eliminating the complexities of web3 interaction. This allows them to seamlessly perform key actions such as deposits and withdrawals.
+Our dApp integrates the Web3Auth [Web3Auth MPC Core Kit SDK](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/helpers/web3Auth.ts#L9) to simplify non-custodial wallet creation, streamlining the onboarding process. With [Google Sign-In](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L99) and [custom JWT authentication](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L111), users can connect using existing credentials, eliminating the complexities of web3 interaction. This allows them to seamlessly perform key actions such as [deposits](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/components/hyperharvest/Harvest.tsx#L70) and [withdrawals](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/components/hyperharvest/Harvest.tsx#L88).
 
 ### Key Features:
 
-- **Custom Google Authentication**: Users log in with their Google accounts, and wallet creation happens automatically in the background using Web3Auth MPC-TSS. No additional setup is required.
-- **Flexible JWT Flow**: Users can authenticate using either Google or Farcaster (pending full integration), with the option to switch between them, enhancing security and control.
+- [**Custom Google Authentication**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L99): Users log in with their Google accounts, and wallet creation happens automatically in the background using Web3Auth MPC-TSS. No additional setup is required.
+- [**Flexible JWT Flow**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L111): Users can authenticate using either Google or Farcaster (pending full integration), with the option to switch between them, enhancing security and control.
 - **Automatic Wallet Generation**: Web3 wallets are generated during the login process, giving users immediate access to features like token transfers without additional steps.
 Core Technical Execution:
-- **MPC-TSS Integration**: We leverage Multi-Party Computation Threshold Signature Scheme (MPC-TSS) for secure key management, completely abstracted from the user.
-- **Smart Contract Interaction**: Users can perform transactions, like deposits or withdrawals, by interacting with AAVE and Chainlink-powered vaults using Web3Auth-generated wallets. This includes on-chain actions on Arbitrum and Optimism.
-- **Persistent User Sessions**: Using JWTs, we enable continuous user sessions, reducing the need for repeated logins. Data is locally stored for a smooth experience during future logins.
+- [**MPC-TSS Integration**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/helpers/web3Auth.ts#L9): We leverage Multi-Party Computation Threshold Signature Scheme (MPC-TSS) for secure key management, completely abstracted from the user.
+- [**Smart Contract Interaction**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/utils/contract.ts#L11): Users can perform transactions, like deposits or withdrawals, by interacting with AAVE and Chainlink-powered vaults using Web3Auth-generated wallets. This includes on-chain actions on Arbitrum and Optimism.
+- [**Persistent User Sessions**]()https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L53: Using JWTs, we enable continuous user sessions, reducing the need for repeated logins. Data is locally stored for a smooth experience during future logins.
 
 ### How It Works:
 
@@ -284,7 +284,7 @@ Core Technical Execution:
 ### Limitations:
 
 - Farcaster Login: The Farcaster login flow is partially integrated and remains incomplete.
-- MFA Sharing: While MFA is enabled, the ability for users to share or export their MFA factor key is not yet available.
+- [MFA Sharing](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/app/settings/page.tsx#L38): While MFA is enabled, the ability for users to share or export their MFA factor key is not yet available.
 
 ### Future Improvements:
 
