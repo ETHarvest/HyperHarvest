@@ -1,3 +1,9 @@
+---
+cover: >-
+  https://images.unsplash.com/photo-1546188994-07c34f6e5e1b?crop=entropy&cs=srgb&fm=jpg&ixid=M3wxOTcwMjR8MHwxfHNlYXJjaHw0fHxmdXR1cmV8ZW58MHx8fHwxNzI1NzgzODE4fDA&ixlib=rb-4.0.3&q=85
+coverY: 0
+---
+
 # 🎉 Future Work
 
 ### Planned Features :
