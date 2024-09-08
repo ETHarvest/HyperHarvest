@@ -9,7 +9,8 @@
 HyperHarvest is an innovative cross-chain yield aggregator that maximizes USDC returns across Arbitrum Sepolia and Optimism Sepolia testnets. Our platform stands out through its use of private, encrypted yield optimization strategies, providing a unique competitive edge in the DeFi landscape .
 
 Start Harvesting : [HyperHarvest](https://hyperharvest.vercel.app/) \
-XMTP Bot (Converse App) : [0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED](0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED)
+XMTP Bot (Converse App) : [0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED](0x1E7a0E69B39c2A2f7d0D6a0cF4A1D4fCaD8f04ED)\
+Docs : [HyperHarvest Documentation](https://eth-harvest.gitbook.io/hyperharvest)
 
 ## ✏️ Key features 
 
@@ -107,6 +108,11 @@ function _ccipReceive(
 - **Interoperability**: Enables seamless movement of funds across different blockchain networks.
 - **Enhanced Yield Opportunities**: Allows users to access yield opportunities on multiple chains.
 - **Automated Cross-Chain Operations**: Facilitates automated fund transfers and yield farming across chains.
+
+### Code 
+For detailed implementation of how CCIP is integrated , please refer :
+
+[HyperHarvest Contract](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/foundry/contracts/HyperHarvest.sol)
 
 ## 🔥 Lit Protocol Integration
 
@@ -206,10 +212,15 @@ To enhance the user experience and provide more intelligent interactions, we inc
 
 By integrating XMTP into our project, we've created a more accessible and user-friendly interface for our cross-chain yield aggregator. This integration allows users to manage their assets, receive important notifications, and interact with our protocol seamlessly through a messaging app, significantly lowering the barrier to entry for blockchain-based financial services.
 
+### Code 
+For the detailed implementation of our XMTP Protocol integration, please refer to:
+
+- [Harvest-bot](https://github.com/ETHarvest/HyperHarvest/tree/main/packages/harvest-bot)
+- [Notification-script](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/scripts/notificationServer.js)
 
 ## 📅 Envio Integration
 
-### Overview
+### Overview 
 
 Our project utilizes Envio's HyperIndex to efficiently index blockchain data and serve it to our application. HyperIndex is designed to deliver superior performance and provide a seamless developer experience, which in turn optimizes the user experience of our application.
 
@@ -257,21 +268,25 @@ The Envio integration complements our XMTP implementation by providing the backe
 
 By integrating Envio's HyperIndex into our project, we've significantly enhanced our ability to provide real-time, accurate blockchain data to our users. This integration works hand-in-hand with our XMTP implementation to create a responsive, informative, and user-friendly application that keeps users updated on critical changes and events in real-time.
 
+### Code 
+For the detailed implementation of our Envio integration, please refer to:
 
+- [Aave-indexer](https://github.com/ETHarvest/HyperHarvest/tree/main/Indexer/aave)
+- [HyperHarvest-indexer](https://github.com/ETHarvest/HyperHarvest/tree/main/Indexer/hyperharvest)
 
 ## 🕸️ Web3Auth MPC Core Kit Integration
 
-Our dApp integrates the Web3Auth MPC Core Kit SDK to simplify non-custodial wallet creation, streamlining the onboarding process. With Google Sign-In and custom JWT authentication, users can connect using existing credentials, eliminating the complexities of web3 interaction. This allows them to seamlessly perform key actions such as deposits and withdrawals.
+Our dApp integrates the Web3Auth [Web3Auth MPC Core Kit SDK](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/helpers/web3Auth.ts#L9) to simplify non-custodial wallet creation, streamlining the onboarding process. With [Google Sign-In](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L99) and [custom JWT authentication](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L111), users can connect using existing credentials, eliminating the complexities of web3 interaction. This allows them to seamlessly perform key actions such as [deposits](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/components/hyperharvest/Harvest.tsx#L70) and [withdrawals](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/components/hyperharvest/Harvest.tsx#L88).
 
 ### Key Features:
 
-- **Custom Google Authentication**: Users log in with their Google accounts, and wallet creation happens automatically in the background using Web3Auth MPC-TSS. No additional setup is required.
-- **Flexible JWT Flow**: Users can authenticate using either Google or Farcaster (pending full integration), with the option to switch between them, enhancing security and control.
+- [**Custom Google Authentication**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L99): Users log in with their Google accounts, and wallet creation happens automatically in the background using Web3Auth MPC-TSS. No additional setup is required.
+- [**Flexible JWT Flow**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L111): Users can authenticate using either Google or Farcaster (pending full integration), with the option to switch between them, enhancing security and control.
 - **Automatic Wallet Generation**: Web3 wallets are generated during the login process, giving users immediate access to features like token transfers without additional steps.
 Core Technical Execution:
-- **MPC-TSS Integration**: We leverage Multi-Party Computation Threshold Signature Scheme (MPC-TSS) for secure key management, completely abstracted from the user.
-- **Smart Contract Interaction**: Users can perform transactions, like deposits or withdrawals, by interacting with AAVE and Chainlink-powered vaults using Web3Auth-generated wallets. This includes on-chain actions on Arbitrum and Optimism.
-- **Persistent User Sessions**: Using JWTs, we enable continuous user sessions, reducing the need for repeated logins. Data is locally stored for a smooth experience during future logins.
+- [**MPC-TSS Integration**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/helpers/web3Auth.ts#L9): We leverage Multi-Party Computation Threshold Signature Scheme (MPC-TSS) for secure key management, completely abstracted from the user.
+- [**Smart Contract Interaction**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/utils/contract.ts#L11): Users can perform transactions, like deposits or withdrawals, by interacting with AAVE and Chainlink-powered vaults using Web3Auth-generated wallets. This includes on-chain actions on Arbitrum and Optimism.
+- [**Persistent User Sessions**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L53): Using JWTs, we enable continuous user sessions, reducing the need for repeated logins. Data is locally stored for a smooth experience during future logins.
 
 ### How It Works:
 
@@ -282,8 +297,8 @@ Core Technical Execution:
 
 ### Limitations:
 
-- Farcaster Login: The Farcaster login flow is partially integrated and remains incomplete.
-- MFA Sharing: While MFA is enabled, the ability for users to share or export their MFA factor key is not yet available.
+- [Farcaster Login](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/app/api/auth/): The Farcaster login flow is partially integrated and remains incomplete.
+- [MFA Sharing](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/app/settings/page.tsx#L38): While MFA is enabled, the ability for users to share or export their MFA factor key is not yet available.
 
 ### Future Improvements:
 
@@ -354,4 +369,41 @@ These functions collectively enable the core functionality of the HyperHarvest c
 - Implementation of advanced yield optimization strategies and algorithms
 - Enhanced governance features for protocol parameters
 
+
+
+## Requirements
+
+Before you begin, you need to install the following tools:
+
+- [Node (>= v18.17)](https://nodejs.org/en/download/)
+- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
+- [Git](https://git-scm.com/downloads)
+
+
+## Quickstart
+
+To get started with HyperHarvest, follow the steps below:
+
+1. **Clone this repo & install dependencies**
+
+   ```
+   git clone https://github.com/ETHarvest/HyperHarvest.git
+   cd HyperHarvest
+   yarn install
+   ```
+
+2. **Start your NextJS app**
+  ```
+  yarn start
+  ```
+
+
+Visit http://localhost:3000. to interact with the app. Adjust the app configuration in packages/nextjs/helpers/config.ts
+
+
+## Contributing to HyperHarvest
+
+We welcome contributions to HyperHarvest!
+
+Please see [CONTRIBUTING.MD](https://github.com/ETHarvest/HyperHarvest/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to HyperHarvest.
 
