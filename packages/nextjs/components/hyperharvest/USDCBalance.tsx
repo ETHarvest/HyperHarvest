@@ -13,11 +13,7 @@ const USDCBalance = () => {
     return <div className="text-red-500">{error}</div>;
   }
 
-  return (
-    <div className="text-xl">
-      Wallet {parseFloat(balance).toFixed(2)} USDC
-    </div>
-  );
+  return <div className="text-xl">Wallet {parseFloat(balance).toFixed(2)} USDC</div>;
 };
 
 export default USDCBalance;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { readContract } from "viem/actions";
 import { formatUnits } from "viem";
 import { erc20Abi } from "viem";
+import { readContract } from "viem/actions";
 import { useWeb3Auth } from "~~/context/Web3Context";
 
 export const useHHUSDCBalance = (usdcContractAddress: string, hhContractAddress: string) => {
