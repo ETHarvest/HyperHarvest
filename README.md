@@ -272,7 +272,7 @@ Our dApp integrates the Web3Auth [Web3Auth MPC Core Kit SDK](https://github.com/
 Core Technical Execution:
 - [**MPC-TSS Integration**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/helpers/web3Auth.ts#L9): We leverage Multi-Party Computation Threshold Signature Scheme (MPC-TSS) for secure key management, completely abstracted from the user.
 - [**Smart Contract Interaction**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/utils/contract.ts#L11): Users can perform transactions, like deposits or withdrawals, by interacting with AAVE and Chainlink-powered vaults using Web3Auth-generated wallets. This includes on-chain actions on Arbitrum and Optimism.
-- [**Persistent User Sessions**]()https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L53: Using JWTs, we enable continuous user sessions, reducing the need for repeated logins. Data is locally stored for a smooth experience during future logins.
+- [**Persistent User Sessions**](https://github.com/ETHarvest/HyperHarvest/blob/main/packages/nextjs/context/Web3Context.tsx#L53): Using JWTs, we enable continuous user sessions, reducing the need for repeated logins. Data is locally stored for a smooth experience during future logins.
 
 ### How It Works:
 
