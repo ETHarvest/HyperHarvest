@@ -366,7 +366,7 @@ Before you begin, you need to install the following tools:
 - [Git](https://git-scm.com/downloads)
 
 
-## [Quickstart](#quickstart)
+## Quickstart
 
 To get started with HyperHarvest, follow the steps below:
 
