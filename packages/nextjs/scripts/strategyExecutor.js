@@ -14,7 +14,7 @@ import { strategyAction } from "../utils/lit-protocol/strategyAction.js";
 import {getStrategy,calculateGasCost} from "../utils/lit-protocol/strategyExecutionHelpers.js"
 import {getArbAPY, getOPAPY} from "../utils/envio/apyInfo.js"
 import {getArbitrumATokenBalance,getOptimismATokenBalance,chainParams, rpcUrls, hyperHarvestAddresses} from "../utils/aave/aaveHelper.js"
-
+import dotenv from 'dotenv';
 
 
 async function main() {
@@ -27,7 +27,7 @@ async function main() {
   ).toISOString();
 
   const wallet = new ethers.Wallet(
-    "f6b82019ef782c18b67f33f096111d12f5dce74817df4faf56cf399dcb4df2ef",
+    Process.env.PRIVATE_KEY,
     new ethers.providers.JsonRpcProvider(
       "https://yellowstone-rpc.litprotocol.com/"
     )
@@ -185,7 +185,7 @@ async function main() {
 
       // Set up the contract interaction
       const provider = new ethers.providers.JsonRpcProvider(rpcUrls[sourceChain]);
-      const signer = new ethers.Wallet("PRIVATE_KEY", provider);
+      const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
       const hyperHarvest = new ethers.Contract(hyperHarvestAddresses[sourceChain], ['function withdrawBridgeAndSupplyAssetToAave(address _receiver, uint256 _gasFeeAmount, uint64 _destinationChainSelector)'], signer);
 
       const params = chainParams[result.targetChain];
